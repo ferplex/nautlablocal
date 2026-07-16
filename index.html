@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nautilus Lab · IA Local para tu Negocio</title>
+  <style>
+    :root {
+      --neon:   #39ff9f;
+      --neon2:  #00e5ff;
+      --purple: #b47cff;
+      --bg:     #0a0c10;
+      --bg2:    #111520;
+      --bg3:    #161b28;
+      --text:   #d4dbe8;
+      --muted:  #5c6a82;
+      --border: #1e2535;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--neon); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10,12,16,.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-logo { color: var(--neon); font-weight: 700; letter-spacing: .1em; font-size: .9rem; }
+    .nav-cta {
+      background: var(--neon);
+      color: #000;
+      padding: .45rem 1.1rem;
+      border-radius: 4px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+    .nav-cta:hover { background: #5fffb8; text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 60%, rgba(57,255,159,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(0,229,255,.05) 0%, transparent 60%);
+    }
+    .hero-tag {
+      font-size: .75rem;
+      letter-spacing: .25em;
+      color: var(--neon);
+      border: 1px solid rgba(57,255,159,.3);
+      padding: .3rem .8rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      max-width: 800px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--neon); }
+    .hero p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--neon);
+      color: #000;
+      padding: .75rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-family: inherit;
+      font-size: .9rem;
+      letter-spacing: .05em;
+    }
+    .btn-primary:hover { background: #5fffb8; text-decoration: none; }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .75rem 1.8rem;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: .9rem;
+    }
+    .btn-ghost:hover { border-color: var(--neon); color: var(--neon); text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-tag {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--neon);
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: .75rem;
+    }
+    .subtitle { color: var(--muted); max-width: 600px; margin-bottom: 3rem; }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    .feature-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+    .feature-card h3 { font-size: 1rem; margin-bottom: .5rem; }
+    .feature-card p { font-size: .85rem; color: var(--muted); }
+
+    /* DEMO */
+    .demo-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      font-size: .85rem;
+      max-width: 560px;
+    }
+    .demo-box .prompt { color: var(--neon); }
+    .demo-box .response { color: var(--text); margin-top: .5rem; }
+    .demo-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat-num { font-size: 2rem; font-weight: 700; color: var(--neon); }
+    .stat-label { font-size: .75rem; color: var(--muted); }
+
+    /* PRECIOS */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .price-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+    }
+    .price-card.featured { border-color: var(--neon); }
+    .price-tag-label {
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .price-card h3 { font-size: 1.1rem; margin-bottom: .75rem; }
+    .price-amount { font-size: 1.8rem; font-weight: 700; color: var(--neon); margin-bottom: .25rem; }
+    .price-period { font-size: .75rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .price-features { list-style: none; }
+    .price-features li {
+      font-size: .85rem;
+      color: var(--muted);
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before { content: '→ '; color: var(--neon); }
+
+    /* ===== SECCIÓN PROFESIONALES ===== */
+    .pro-section { background: var(--bg2); }
+
+    .pro-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    @media(max-width:640px){ .pro-intro { grid-template-columns: 1fr; } }
+
+    .pro-intro-text h2 { margin-bottom: .75rem; }
+    .pro-intro-text p { color: var(--muted); font-size: .9rem; }
+
+    .pro-tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+    .badge {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .35rem .75rem;
+      font-size: .75rem;
+      color: var(--text);
+      letter-spacing: .05em;
+    }
+    .badge.neon  { border-color: rgba(57,255,159,.4); color: var(--neon); }
+    .badge.blue  { border-color: rgba(0,229,255,.4);  color: var(--neon2); }
+    .badge.purple{ border-color: rgba(180,124,255,.4); color: var(--purple); }
+
+    .pro-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .pro-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.75rem;
+      transition: border-color .2s;
+    }
+    .pro-card:hover { border-color: rgba(57,255,159,.3); }
+    .pro-card-icon { font-size: 1.4rem; margin-bottom: .75rem; }
+    .pro-card h3 { font-size: 1rem; margin-bottom: .5rem; }
+    .pro-card p  { font-size: .82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+    .pro-card-price {
+      font-size: .8rem;
+      color: var(--neon);
+      border-top: 1px solid var(--border);
+      padding-top: .75rem;
+      margin-top: auto;
+    }
+    .pro-card-price strong { font-size: 1.1rem; }
+
+    .pro-note {
+      font-size: .8rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      max-width: 680px;
+    }
+    .pro-note strong { color: var(--text); }
+
+    /* CTA */
+    .cta-section { text-align: center; }
+    .cta-section h2 { margin-bottom: .75rem; }
+    .cta-section p  { color: var(--muted); margin-bottom: 2rem; }
+    .cta-contacts { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      font-size: .78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">NAUTILUS LAB · IA LOCAL</span>
+  <a class="nav-cta" href="https://wa.me/523312563514">Agenda diagnóstico</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">IA privada para negocios de Guadalajara</div>
+  <h1>La IA de tu negocio<br/>nunca sale de <em>tu negocio</em>.</h1>
+  <p>Instalamos inteligencia artificial directo en tu equipo. Sin nube, sin mensualidad por consulta, sin que tus datos de clientes viajen a ningún servidor externo.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="https://wa.me/523312563514">Agenda tu diagnóstico gratis</a>
+    <a class="btn-ghost" href="#precios">Ver paquetes y precios</a>
+  </div>
+</section>
+
+<!-- POR QUÉ IA LOCAL -->
+<section>
+  <div class="container">
+    <div class="section-tag">Por qué IA local</div>
+    <h2>Las agencias de IA te conectan a la nube. Nosotros no.</h2>
+    <p class="subtitle">La mayoría de las agencias en Guadalajara ofrecen chatbots conectados a servidores externos: pagas por cada mensaje y tus datos salen de tu negocio. Aquí el modelo vive en tu propio equipo.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Privacidad total</h3>
+        <p>Tus datos de clientes, ventas e inventario nunca salen de tu negocio ni pasan por servidores externos.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💸</div>
+        <h3>Sin mensualidad de nube</h3>
+        <p>No pagas por token ni por consulta. El modelo corre en tu equipo, sin límite de uso.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>Pago único de instalación</h3>
+        <p>El setup base es un costo fijo, no un contrato forzoso ni una suscripción de por vida.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Hecho a la medida</h3>
+        <p>Configurado para tu catálogo y tu forma de atender — no una plantilla genérica de chatbot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section style="background:var(--bg2);">
+  <div class="container">
+    <div class="section-tag">Prueba real</div>
+    <h2>Funciona hasta en el equipo más modesto</h2>
+    <p class="subtitle">Probamos el modelo en una máquina con apenas 3.8GB de RAM — el tipo de equipo que ya tiene cualquier negocio, sin necesidad de comprar hardware nuevo.</p>
+    <div class="demo-stats">
+      <div><div class="stat-num">3.8GB</div><div class="stat-label">RAM de prueba</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">datos locales</div></div>
+      <div><div class="stat-num">$0</div><div class="stat-label">costo por consulta</div></div>
+    </div>
+    <div class="demo-box">
+      <div class="prompt">$ python3 bot_catalogo.py</div>
+      <div class="response">Bot de catálogo listo.</div>
+      <br/>
+      <div class="prompt">Cliente: ¿Cuánto cuestan los tacos de pastor?</div>
+      <div class="response">Bot: Los tacos de pastor cuestan $18.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIOS NEGOCIOS -->
+<section id="precios">
+  <div class="container">
+    <div class="section-tag">Paquetes</div>
+    <h2>Precios de entrada, pensados para negocio local</h2>
+    <p class="subtitle">Por debajo de las agencias grandes de Guadalajara. Cifras en pesos mexicanos, ajustables al alcance real de tu negocio.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tag-label">Pago único</div>
+        <h3>Setup Inicial</h3>
+        <div class="price-amount">$4,500–$8,000</div>
+        <div class="price-period">MXN · un solo pago</div>
+        <ul class="price-features">
+          <li>Instalación de IA local en tu equipo</li>
+          <li>Configuración con tu catálogo</li>
+          <li>1-2 casos de uso funcionando</li>
+          <li>Capacitación básica</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-tag-label">Opcional</div>
+        <h3>Mantenimiento</h3>
+        <div class="price-amount">$800–$1,500</div>
+        <div class="price-period">MXN / mes · cancelable</div>
+        <ul class="price-features">
+          <li>Actualización del modelo</li>
+          <li>Ajustes y corrección de fallas</li>
+          <li>Soporte prioritario</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag-label">Por proyecto</div>
+        <h3>Automatización</h3>
+        <div class="price-amount">Desde $3,000</div>
+        <div class="price-period">MXN · cotización</div>
+        <ul class="price-features">
+          <li>Bot de WhatsApp con IA local</li>
+          <li>Integración con Telegram</li>
+          <li>Conexión a punto de venta</li>
+          <li>Flujos a la medida</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS PARA PROFESIONALES ===== -->
+<section class="pro-section" id="profesionales">
+  <div class="container">
+    <div class="section-tag">Accesorios para profesionales</div>
+
+    <div class="pro-intro">
+      <div class="pro-intro-text">
+        <h2>Infraestructura seria.<br/>Sin <em style="font-style:normal;color:var(--neon2)">intermediarios</em>.</h2>
+        <p>Para desarrolladores, startups y equipos técnicos que necesitan IA generativa, contenedores, automatización y arquitectura real — sin pagar tarifas de agencia grande. Conocimiento propio, stack comprobado.</p>
+      </div>
+      <div class="pro-tech-badges">
+        <span class="badge neon">Ollama</span>
+        <span class="badge neon">InvokeAI</span>
+        <span class="badge blue">Docker</span>
+        <span class="badge blue">Podman</span>
+        <span class="badge blue">Rootless containers</span>
+        <span class="badge purple">Fedora</span>
+        <span class="badge purple">Red Hat / OpenShift</span>
+        <span class="badge neon">Python bots</span>
+        <span class="badge neon">WhatsApp API</span>
+        <span class="badge blue">Web scraping</span>
+        <span class="badge purple">CrowdBot / Hermes</span>
+        <span class="badge neon">ComfyUI</span>
+      </div>
+    </div>
+
+    <div class="pro-services-grid">
+
+      <!-- IA imagen -->
+      <div class="pro-card">
+        <div class="pro-card-icon">🎨</div>
+        <h3>IA de Imagen — setup &amp; pipeline</h3>
+        <p>Instalación y configuración de InvokeAI, ComfyUI o Stable Diffusion en tu equipo local. Workflows personalizados para generación de assets, concept art, texturas, product shots o contenido editorial. Sin nube, sin créditos por imagen.</p>
+        <div class="pro-card-price">
+          Setup inicial <strong>$4,000–$9,000 MXN</strong><br/>
+          <span style="font-size:.75rem">Pipeline personalizado cotización aparte</span>
+        </div>
+      </div>
+
+      <!-- Video gen -->
+      <div class="pro-card">
+        <div class="pro-card-icon">🎬</div>
+        <h3>Generación de Video con IA</h3>
+        <p>Producción de contenido de video IA (ads, reels, demos de producto) usando herramientas como Wan 2.2 local o integración con Kling / Seedance para uso comercial. Guión, dirección de prompts y entrega de archivos listos para publicar.</p>
+        <div class="pro-card-price">
+          Por video corto (15-60 seg) desde <strong>$1,800 MXN</strong><br/>
+          <span style="font-size:.75rem">Pack de 5 videos desde $7,000 MXN</span>
+        </div>
+      </div>
+
+      <!-- Bots -->
+      <div class="pro-card">
+        <div class="pro-card-icon">🤖</div>
+        <h3>Bots de Automatización</h3>
+        <p>Desarrollo de bots a medida: WhatsApp (whatsapp-web.js + IA local), scraping web, generación automática de contenido, bots de monitoreo o publicación en redes. Stack en Python o Node.js. Incluye bot tipo Hermes / CrowdBot para outreach o campañas.</p>
+        <div class="pro-card-price">
+          Bot simple desde <strong>$3,500 MXN</strong><br/>
+          <span style="font-size:.75rem">Bot con IA + integraciones desde $8,000 MXN</span>
+        </div>
+      </div>
+
+      <!-- Docker / Podman -->
+      <div class="pro-card">
+        <div class="pro-card-icon">📦</div>
+        <h3>Docker / Podman — setup &amp; consultoría</h3>
+        <p>Contenerización de aplicaciones y servicios. Especialidad en Podman rootless (sin daemon, sin root), stacks con Compose, redes internas y persistencia. Migración de Docker a Podman. Configuración de home server o VPS desde cero.</p>
+        <div class="pro-card-price">
+          Setup básico <strong>$3,000–$6,000 MXN</strong><br/>
+          <span style="font-size:.75rem">Stack completo + mantenimiento desde $9,000 MXN</span>
+        </div>
+      </div>
+
+      <!-- Fedora / Red Hat -->
+      <div class="pro-card">
+        <div class="pro-card-icon">🎩</div>
+        <h3>Fedora · Red Hat · OpenShift</h3>
+        <p>Administración de servidores Fedora / RHEL, hardening, DNF, SELinux, systemd. Despliegue y configuración de OpenShift (OKD / Red Hat OpenShift). Arquitectura on-premise para equipos que quieren Kubernetes sin AWS. Consultoría por horas o proyecto.</p>
+        <div class="pro-card-price">
+          Consultoría por hora <strong>$900–$1,500 MXN</strong><br/>
+          <span style="font-size:.75rem">Proyecto completo desde $12,000 MXN</span>
+        </div>
+      </div>
+
+      <!-- SRC / web scraping -->
+      <div class="pro-card">
+        <div class="pro-card-icon">🕸️</div>
+        <h3>Scraping &amp; Recolección de Datos</h3>
+        <p>Extracción automatizada de datos de sitios web, marketplaces, directorios y redes sociales. Bots recurrentes con scheduling, exportación a CSV/JSON/DB. Ideal para inteligencia de mercado, monitoreo de precios o leads.</p>
+        <div class="pro-card-price">
+          Script puntual desde <strong>$2,500 MXN</strong><br/>
+          <span style="font-size:.75rem">Bot recurrente + mantenimiento desde $4,500 MXN</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pro-note">
+      <strong>¿Necesitas algo que no ves aquí?</strong> Esta lista no es exhaustiva — si lo que buscas involucra IA local, contenedores o automatización en Linux, lo más probable es que pueda ayudarte. Manda WhatsApp o correo y armamos propuesta en 24h.
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-tag">Siguiente paso</div>
+    <h2>Agenda un diagnóstico sin costo</h2>
+    <p>Revisamos tu negocio y tu volumen de atención, y armamos una propuesta con precio cerrado.</p>
+    <div class="cta-contacts">
+      <a class="btn-primary" href="https://wa.me/523312563514">WhatsApp: 33 1256 3514</a>
+      <a class="btn-ghost" href="mailto:Nautiluslaboratories@proton.me">Nautiluslaboratories@proton.me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Nautilus Lab · IA Local para Negocios &nbsp;·&nbsp; Guadalajara / Tlaquepaque, Jalisco &nbsp;·&nbsp;
+  WhatsApp 33 1256 3514 &nbsp;·&nbsp; Nautiluslaboratories@proton.me
+</footer>
+
+</body>
+</html>
