@@ -1,0 +1,14 @@
+{
+  "name": "nautlocal-wa-bot",
+  "version": "1.0.0",
+  "description": "Bot de WhatsApp con Ollama local — Nautilus Lab",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "whatsapp-web.js": "^1.26.0",
+    "qrcode-terminal": "^0.12.0",
+    "node-fetch": "^2.7.0"
+  }
+}
