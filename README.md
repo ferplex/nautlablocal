@@ -1,37 +1,64 @@
-# Nautilus Lab · IA Local — Landing Page
+# 🤖 Nautilus Lab — Bot WhatsApp + Ollama Local
 
-Landing page de una sola página (`index.html`) para la línea de negocio de **IA local con Ollama para negocios de Guadalajara/Jalisco**. Es un proyecto aparte del portafolio de juegos/assets de Nautilus Lab — mismo nombre de marca, oferta distinta.
+Bot de WhatsApp que responde preguntas del catálogo usando IA local (Ollama).
+Sin nube. Sin costo por mensaje. Corre en Windows.
 
-## Contenido de la página
+---
 
-1. **Hero** — mensaje central: "la IA de tu negocio nunca sale de tu negocio". Incluye el elemento gráfico de "la frontera" (nube tachada vs. chip local) que ilustra la propuesta de privacidad.
-2. **Por qué IA local** — 4 ventajas frente a agencias que dependen de nube.
-3. **Prueba real** — muestra la demo del bot de catálogo (Python + Ollama) corriendo en una máquina de 3.8GB RAM, estilo terminal.
-4. **Paquetes y precios**:
-   - Setup Inicial: $4,500–$8,000 MXN (pago único)
-   - Mantenimiento: $800–$1,500 MXN/mes (opcional, cancelable)
-   - Automatización: desde $3,000 MXN (cotización por proyecto)
-5. **Contacto / CTA final** — WhatsApp y correo.
+## Requisitos
 
-## Contacto usado en la página
+- Node.js 18+ → https://nodejs.org
+- Ollama corriendo con llama3.2:1b → https://ollama.com
+- WhatsApp en el celular (para escanear QR)
 
-- WhatsApp: **33 1256 3514** (enlace `wa.me/523312563514`)
-- Correo: **Nautiluslaboratories@proton.me**
+---
 
-## Stack
+## Instalación (una sola vez)
 
-- HTML + CSS puro, sin build tools, un solo archivo (`index.html`).
-- Fuentes vía Google Fonts: Space Grotesk (headings), Inter (body), Orbitron (logotipo), JetBrains Mono (detalles técnicos/terminal).
-- Sin dependencias de JS — todo el movimiento es CSS (`@keyframes`), y respeta `prefers-reduced-motion`.
-- Responsive: colapsa a una columna en pantallas menores a 760px.
+```bash
+# 1. Instalar dependencias
+npm install
 
-## Pendientes / ideas para siguiente iteración
+# 2. Asegurarte que Ollama tiene el modelo
+ollama pull llama3.2:1b
+```
 
-- Formulario de contacto funcional (hoy los botones abren WhatsApp/mailto directo, no hay formulario en la página).
-- Posible versión con nombre de negocio piloto una vez que haya un cliente confirmado.
-- Sección de "casos de éxito" cuando exista el primer cliente real (hoy solo se muestra la prueba técnica en hardware modesto).
+---
 
-## Archivos
+## Arrancar el bot
 
-- `index.html` — la landing page completa.
-- `README.md` — este archivo.
+```bash
+node bot.js
+```
+
+Escanea el QR que aparece en la terminal con tu WhatsApp.
+Una vez conectado, cualquier mensaje directo al número será respondido por el bot.
+
+---
+
+## Personalizar para un cliente
+
+Edita **catalogo.js**:
+- `NOMBRE_NEGOCIO` → nombre del negocio
+- `CATALOGO` → horarios, precios, dirección, lo que sea
+- El bot solo responde con esa info — no inventa nada
+
+---
+
+## Estructura
+
+```
+nautlocal-wa/
+├── bot.js          ← lógica principal
+├── catalogo.js     ← info del negocio (editar por cliente)
+├── package.json
+└── README.md
+```
+
+---
+
+## Notas
+
+- La sesión se guarda en `.wwebjs_auth/` — no hace falta escanear QR cada vez
+- Si el número se desconecta, borra esa carpeta y vuelve a escanear
+- Funciona en grupos si quitas el filtro `msg.isGroupMsg` en bot.js
