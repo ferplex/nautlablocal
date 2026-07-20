@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nautilus Lab</title>
+<style>
+  :root{
+    --abismo: #050810;
+    --cian: #2dd8ff;
+    --rosa: #ff3ea8;
+    --dorado: #ffb84d;
+    --morado: #a374ff;
+    --texto: #dceaff;
+    --texto-tenue: #7f92b3;
+    --linea: rgba(45,216,255,0.18);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{
+    background:var(--abismo);
+    color:var(--texto);
+    font-family:'Trebuchet MS', sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+    position:relative;
+  }
+
+  #bg-canvas{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 15%, rgba(45,216,255,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 85% 80%, rgba(255,62,168,0.08), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(163,116,255,0.06), transparent 60%);
+  }
+  .particula{
+    position:fixed; border-radius:50%; pointer-events:none; z-index:1;
+    background:radial-gradient(circle, rgba(45,216,255,0.9), rgba(45,216,255,0) 70%);
+    animation: subir linear infinite;
+    opacity:0.6;
+  }
+  @keyframes subir{
+    from{ transform:translateY(0); opacity:0; }
+    10%{ opacity:0.7; }
+    90%{ opacity:0.4; }
+    to{ transform:translateY(-110vh); opacity:0; }
+  }
+
+  main{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+    padding:6vh 6vw;
+    max-width:520px;
+  }
+
+  .logo-wrap{
+    position:relative;
+    width:180px; height:180px;
+    margin-bottom:2.2rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ping-ring{
+    position:absolute; inset:0; border:1px solid var(--cian); border-radius:50%;
+    opacity:0; animation:ping 3.6s ease-out infinite;
+  }
+  .ping-ring:nth-child(2){ animation-delay:1.2s; border-color:var(--morado); }
+  .ping-ring:nth-child(3){ animation-delay:2.4s; }
+  @keyframes ping{
+    0%{ transform:scale(0.35); opacity:0.75; }
+    100%{ transform:scale(1); opacity:0; }
+  }
+  .octo{
+    width:64%; height:64%;
+    filter:drop-shadow(0 0 14px rgba(45,216,255,0.45));
+    animation:flotar 4.5s ease-in-out infinite;
+  }
+  @keyframes flotar{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
+  }
+
+  .wordmark{
+    font-family:'Orbitron', 'Arial Narrow', sans-serif;
+    font-weight:800;
+    font-size:clamp(1.8rem, 6vw, 2.6rem);
+    letter-spacing:0.14em;
+    color:var(--texto);
+    margin-bottom:0.6rem;
+  }
+  .subtag{
+    font-family:'JetBrains Mono', 'Consolas', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    color:var(--cian);
+    text-transform:uppercase;
+    margin-bottom:2.6rem;
+  }
+
+  .btn-entrar{
+    font-family:'Orbitron', sans-serif;
+    font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--cian); border:1px solid var(--cian);
+    padding:0.95rem 2.2rem; border-radius:2px;
+    text-decoration:none; display:inline-block;
+    transition:all 0.25s ease;
+    background:rgba(45,216,255,0.04);
+  }
+  .btn-entrar:hover{
+    background:var(--cian); color:var(--abismo);
+    box-shadow:0 0 26px rgba(45,216,255,0.55);
+    transform:translateY(-1px);
+  }
+
+  footer{
+    position:fixed; bottom:20px; left:0; right:0; z-index:2;
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem; color:var(--texto-tenue);
+    letter-spacing:0.04em;
+  }
+
+  a:focus-visible{ outline:2px solid var(--cian); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="bg-canvas"></div>
+
+<main>
+  <div class="logo-wrap">
+    <div class="ping-ring"></div>
+    <div class="ping-ring"></div>
+    <div class="ping-ring"></div>
+    <svg class="octo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="38" r="20" fill="none" stroke="#2dd8ff" stroke-width="1.6" opacity="0.95"/>
+      <path d="M35 45 Q30 70 25 85" stroke="#2dd8ff" stroke-width="1.6" fill="none" opacity="0.85"/>
+      <path d="M42 50 Q40 75 34 90" stroke="#ff3ea8" stroke-width="1.6" fill="none" opacity="0.85"/>
+      <path d="M50 52 Q50 78 50 92" stroke="#2dd8ff" stroke-width="1.6" fill="none" opacity="0.85"/>
+      <path d="M58 50 Q60 75 66 90" stroke="#ff3ea8" stroke-width="1.6" fill="none" opacity="0.85"/>
+      <path d="M65 45 Q70 70 75 85" stroke="#2dd8ff" stroke-width="1.6" fill="none" opacity="0.85"/>
+      <circle cx="42" cy="34" r="2.6" fill="#2dd8ff"/>
+      <circle cx="58" cy="34" r="2.6" fill="#2dd8ff"/>
+      <path d="M20 15 L80 78" stroke="#a374ff" stroke-width="2" opacity="0.7"/>
+      <circle cx="80" cy="78" r="3" fill="#ffb84d"/>
+    </svg>
+  </div>
+
+  <h1 class="wordmark">NAUTILUS LAB</h1>
+  <div class="subtag">Interactive · Animation · Intelligence</div>
+
+  <a class="btn-entrar" href="https://t.me/nautiluslabialocalbot" target="_blank" rel="noopener">Ingresar al Lab</a>
+</main>
+
+<footer>hecho local, sin nube · Guadalajara, MX</footer>
+
+<script>
+  const prefiereReducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!prefiereReducido){
+    const colores = ['#2dd8ff', '#ff3ea8', '#a374ff', '#ffb84d'];
+    for(let i=0; i<16; i++){
+      const p = document.createElement('div');
+      p.className = 'particula';
+      const size = 2 + Math.random()*4;
+      p.style.width = size+'px';
+      p.style.height = size+'px';
+      p.style.left = Math.random()*100+'vw';
+      p.style.bottom = '-5vh';
+      p.style.background = `radial-gradient(circle, ${colores[i % colores.length]}, transparent 70%)`;
+      p.style.animationDuration = (14 + Math.random()*14)+'s';
+      p.style.animationDelay = (Math.random()*18)+'s';
+      document.body.appendChild(p);
+    }
+  }
+</script>
+
+</body>
+</html>
