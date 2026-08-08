@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nautilus Lab · IA Local & TALLER·OS</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* Product Highlight (TALLER·OS) */
+        .product-highlight {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.2);
+        }
+
+        .product-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .product-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--success);
+            margin: 1rem 0;
+        }
+
+        .price-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--accent);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, opacity 0.2s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--text-muted);
+            color: var(--text-main);
+        }
+
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: auto;
+        }
+
+        /* Calculator */
+        .calculator {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+        }
+
+        .calc-result {
+            font-size: 2rem;
+            color: var(--success);
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .features-list li {
+                justify-content: center;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">NAUTILUS LAB</div>
+            <nav class="nav-links">
+                <a href="#producto">Software</a>
+                <a href="#servicios">Servicios</a>
+                <a href="https://wa.me/523312563514">Contacto</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <span class="badge">IA LOCAL · GUADALAJARA</span>
+            <h1>Tu negocio inteligente.<br>Sin nube. Sin mensualidades.</h1>
+            <p>Instalamos inteligencia artificial directo en tu equipo o usa nuestro panel listo para operar. Tus datos nunca salen de tu negocio.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#producto" class="btn btn-primary">Ver Software ($8 USD)</a>
+                <a href="https://wa.me/523312563514" class="btn btn-secondary" style="margin-left: 1rem;">Agendar Diagnóstico</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NUEVA: PRODUCTO DIGITAL -->
+        <section id="producto" class="product-highlight">
+            <div class="product-grid">
+                <div class="product-info">
+                    <h2>TALLER·OS v1.3</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Panel de Operaciones con IA Local Integrada</p>
+                    
+                    <div class="price-tag">
+                        $8 USD <span class="price-sub">/ pago único</span>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>Gestión de Inventario y Ventas</li>
+                        <li>Chat IA (qwen2) con respuesta por voz 🎤</li>
+                        <li>Privacidad Total (100% Offline)</li>
+                        <li>Sin suscripciones mensuales</li>
+                    </ul>
+
+                    <div class="btn-group">
+                        <a href="https://nautilulab.gumroad.com/l/talleros" class="btn btn-primary" target="_blank">Comprar en Gumroad</a>
+                        <a href="https://ferplex12.itch.io/talleros" class="btn btn-secondary" target="_blank">Ver en Itch.io</a>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);">* Requiere Ollama instalado para funciones de IA.</p>
+                </div>
+                <div class="product-visual" style="text-align: center;">
+                    <!-- Placeholder visual simple con CSS -->
+                    <div style="background: #000; border: 1px solid #333; border-radius: 8px; padding: 2rem; display: inline-block;">
+                        <div style="color: var(--accent); font-family: monospace; text-align: left;">
+                            > TALLER·OS v1.3<br>
+                            > Iniciando sistema...<br>
+                            > Cargando inventario... OK<br>
+                            > IA Local (qwen2)... ACTIVA<br>
+                            > Micrófono... LISTO 🎤<br>
+                            > Esperando comando_
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SERVICIOS (PRECIOS ACTUALIZADOS) -->
+        <section id="servicios">
+            <div class="section-title">
+                <h2>Servicios Personalizados</h2>
+                <p style="color: var(--text-muted);">¿Necesitas algo a la medida para tu empresa en Guadalajara?</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Setup Inicial</h3>
+                    <p>Instalación de IA local en tu equipo, configuración con tu catálogo real y capacitación básica.</p>
+                    <div class="card-price">$4,500 - $8,000 MXN</div>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Pago único</p>
+                </div>
+                <div class="card">
+                    <h3>Mantenimiento</h3>
+                    <p>Actualización de modelos, ajustes finos y soporte prioritario para que nunca pares.</p>
+                    <div class="card-price">$800 - $1,500 MXN</div>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Mensual (Cancelable)</p>
+                </div>
+                <div class="card">
+                    <h3>Automatización</h3>
+                    <p>Integración con WhatsApp, Telegram o Punto de Venta. Flujos diseñados para tu negocio.</p>
+                    <div class="card-price">Desde $3,000 MXN</div>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Por proyecto</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULADORA -->
+        <section class="calculator">
+            <h3 style="margin-bottom: 1rem;">¿Cuánto te cuesta NO automatizar?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Si pierdes 10 horas a la semana en tareas repetitivas a $80/hr:</p>
+            <div class="calc-result">Ahorro potencial: $3,200 MXN / mes</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">≈ $38,400 MXN al año recuperados.</p>
+            <div style="margin-top: 1.5rem;">
+                <a href="https://wa.me/523312563514" class="btn btn-primary">Quiero automatizar esto</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Nautilus Lab · IA Local para Negocios</p>
+            <p>Guadalajara / Tlaquepaque, Jalisco</p>
+            <div class="contact-links">
+                <a href="https://wa.me/523312563514">WhatsApp: 33 1256 3514</a>
+                <a href="mailto:Nautiluslaboratories@proton.me">Email</a>
+                <a href="https://t.me/nautiluslabialocalbot">Telegram</a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Nautilus Lab. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
