@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nautilus Lab · IA Local & TALLER·OS</title>
+    <meta name="description" content="IA Local para negocios en Guadalajara. Sin nube, sin mensualidades. Descarga TALLER·OS, tu panel de operaciones con IA por $8 USD.">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --success: #22c55e;
+            --border: #334155;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+        .logo { font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.5px; text-transform: uppercase; }
+        .nav-btn { background: var(--card); color: var(--text); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; border: 1px solid var(--border); }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; padding-top: 1rem; }
+        .badge { display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; margin-bottom: 1rem; border: 1px solid rgba(56, 189, 248, 0.2); }
+        h1 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; }
+
+        /* PRODUCTO DESTACADO (TALLER·OS) */
+        .product-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::after {
+            content: 'OFERTA LANZAMIENTO';
+            position: absolute; top: 15px; right: -30px;
+            background: var(--accent); color: #000;
+            padding: 5px 40px; transform: rotate(45deg);
+            font-size: 0.7rem; font-weight: 800;
+        }
+        .product-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media(min-width: 768px) { .product-grid { grid-template-columns: 1.2fr 1fr; align-items: center; } }
+        
+        .price-big { font-size: 3rem; font-weight: 800; color: var(--success); line-height: 1; margin: 1rem 0; }
+        .price-sub { font-size: 1rem; color: var(--muted); font-weight: 400; }
+        
+        .features { list-style: none; margin: 1.5rem 0; }
+        .features li { margin-bottom: 0.8rem; display: flex; align-items: flex-start; color: var(--text); }
+        .features li span { color: var(--accent); margin-right: 10px; font-weight: bold; }
+
+        .btn-group { display: flex; flex-direction: column; gap: 1rem; }
+        @media(min-width: 480px) { .btn-group { flex-direction: row; } }
+        
+        .btn { display: block; width: 100%; text-align: center; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: 700; transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-secondary { background: transparent; border: 1px solid var(--muted); color: var(--text); }
+
+        /* Terminal Visual */
+        .terminal { background: #000; border-radius: 8px; padding: 1.5rem; font-family: monospace; color: #33ff00; font-size: 0.9rem; border: 1px solid #333; }
+        .cursor { animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Servicios */
+        .section-title { text-align: center; margin: 3rem 0 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .service-card { background: var(--card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); }
+        .service-card h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .service-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .service-price { color: var(--text); font-weight: 700; font-size: 1.1rem; }
+
+        /* Footer */
+        footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.9rem; }
+        .footer-links { margin: 1rem 0; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--accent); text-decoration: none; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo">Nautilus Lab</div>
+        <a href="https://wa.me/523312563514" class="nav-btn">WhatsApp</a>
+    </header>
+
+    <section class="hero">
+        <span class="badge">IA LOCAL · GUADALAJARA</span>
+        <h1>Tu negocio inteligente.<br>Sin nube. Sin espías.</h1>
+        <p>Software de gestión con IA integrada que corre 100% en tu equipo. Tus datos nunca salen de tu negocio.</p>
+    </section>
+
+    <!-- PRODUCTO DIGITAL -->
+    <section class="product-card" id="producto">
+        <div class="product-grid">
+            <div>
+                <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">TALLER·OS v1.3</h2>
+                <p style="color: var(--muted);">Panel de Operaciones + IA Local (qwen2)</p>
+                
+                <div class="price-big">$8 <span style="font-size: 1.5rem;">USD</span></div>
+                <p class="price-sub">Pago único · Sin suscripciones</p>
+
+                <ul class="features">
+                    <li><span>✓</span> <div><strong>Gestión Total:</strong> Inventario, Ventas, Contactos y Catálogo.</div></li>
+                    <li><span>✓</span> <div><strong>IA con Voz:</strong> Pídele estrategias de marketing o resúmenes. Te responde hablando 🎤.</div></li>
+                    <li><span>✓</span> <div><strong>Privacidad Extrema:</strong> Datos 100% locales (LocalStorage). Cero servidores externos.</div></li>
+                    <li><span>✓</span> <div><strong>Listo para usar:</strong> Un solo archivo HTML. Sin instalaciones complejas.</div></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="https://nautilulab.gumroad.com/l/talleros" class="btn btn-primary" target="_blank">Comprar en Gumroad ($8)</a>
+                    <a href="https://ferplex12.itch.io/talleros" class="btn btn-secondary" target="_blank">Ver en Itch.io</a>
+                </div>
+                <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--muted); text-align: center;">* Requiere Ollama instalado para funciones de IA.</p>
+            </div>
+            
+            <div class="terminal">
+                > TALLER·OS v1.3 iniciado...<br>
+                > Cargando inventario... OK<br>
+                > Conectando IA Local (qwen2)... OK<br>
+                > Micrófono... ACTIVO 🎤<br>
+                > Usuario: "Dame un plan para vender stock bajo"<br>
+                > IA: "Analizando... Tienes 5 productos críticos. Sugiero promo 2x1..."<br>
+                > Esperando comando<span class="cursor">_</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS PERSONALIZADOS -->
+    <section id="servicios">
+        <div class="section-title">
+            <h2>¿Necesitas instalación personalizada?</h2>
+            <p style="color: var(--muted);">Servicios para empresas en Guadalajara que quieren IA a la medida.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="service-card">
+                <h3>Setup Inicial</h3>
+                <p>Instalamos IA en tu equipo, configuramos tu catálogo y capacitamos a tu personal.</p>
+                <div class="service-price">$4,500 - $8,000 MXN</div>
+                <small style="color: var(--muted);">Pago único</small>
+            </div>
+            <div class="service-card">
+                <h3>Mantenimiento</h3>
+                <p>Actualización de modelos, ajustes finos y soporte prioritario mensual.</p>
+                <div class="service-price">$800 - $1,500 MXN</div>
+                <small style="color: var(--muted);">Mensual · Cancelable</small>
+            </div>
+            <div class="service-card">
+                <h3>Automatización</h3>
+                <p>Integración con WhatsApp, Telegram o Punto de Venta existente.</p>
+                <div class="service-price">Desde $3,000 MXN</div>
+                <small style="color: var(--muted);">Por proyecto</small>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="https://wa.me/523312563514" class="btn btn-secondary" style="display: inline-block; width: auto; padding: 0.8rem 2rem;">Agendar Diagnóstico Gratis</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Nautilus Lab · IA Local para Negocios</p>
+        <p>Guadalajara / Tlaquepaque, Jalisco</p>
+        <div class="footer-links">
+            <a href="https://wa.me/523312563514">WhatsApp</a>
+            <a href="mailto:Nautiluslaboratories@proton.me">Email</a>
+            <a href="https://t.me/nautiluslabialocalbot">Telegram Bot</a>
+        </div>
+        <p style="margin-top: 1rem; opacity: 0.5;">&copy; 2026 Nautilus Lab. Todos los derechos reservados.</p>
+    </footer>
+</div>
+
+</body>
+</html>
