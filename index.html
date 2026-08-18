@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>creativeHuentitan — Diseño Digital que Golpea</title>
+<meta name="description" content="Diseño gráfico digital para negocios locales de Huentitán, Guadalajara. Logos, flyers, marketing digital, bots de Telegram. Contacta por WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --c:#ff3ea8;
+  --c2:#2dd8ff;
+  --c3:#ffb84d;
+  --bg:#07070f;
+  --bg2:#0e0e1c;
+  --bdr:#1e1e38;
+  --txt:#e8eaf6;
+  --mt:#7b82a8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+
+/* AMBIENT */
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none}
+.amb::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,62,168,.15),transparent 70%);top:-200px;left:-100px;animation:fl1 20s ease-in-out infinite}
+.amb::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(45,216,255,.1),transparent 70%);bottom:-100px;right:-100px;animation:fl2 25s ease-in-out infinite}
+@keyframes fl1{0%,100%{transform:translate(0,0)}50%{transform:translate(100px,80px)}}
+@keyframes fl2{0%,100%{transform:translate(0,0)}50%{transform:translate(-80px,-60px)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(7,7,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.nav-logo{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:900;background:linear-gradient(135deg,var(--c),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:1.2rem;align-items:center}
+.nav-links a{color:var(--mt);text-decoration:none;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--c)}
+.nav-cta{background:linear-gradient(135deg,var(--c),var(--c2));color:#07070f!important;font-weight:700;padding:.4rem 1rem;border-radius:20px;font-family:'Orbitron',sans-serif;font-size:.72rem!important}
+
+/* HERO */
+.hero{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 3rem}
+.hero-eyebrow{font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:4px;color:var(--c);text-transform:uppercase;margin-bottom:1.2rem;border:1px solid rgba(255,62,168,.3);display:inline-block;padding:.35rem 1rem;border-radius:20px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,12vw,9rem);line-height:.92;margin-bottom:1rem;letter-spacing:2px}
+.hero h1 .pink{background:linear-gradient(135deg,var(--c),#ff8c42);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .blue{background:linear-gradient(135deg,var(--c2),#a374ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--mt);max-width:520px;line-height:1.6;margin-bottom:2.5rem}
+.hero-sub span{color:var(--txt)}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:linear-gradient(135deg,var(--c),var(--c2));color:#07070f;font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:900;padding:.85rem 1.8rem;border-radius:30px;text-decoration:none;letter-spacing:1px;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(255,62,168,.35)}
+.btn-sec{border:1px solid var(--bdr);color:var(--txt);font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;padding:.85rem 1.8rem;border-radius:30px;text-decoration:none;letter-spacing:1px;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-sec:hover{border-color:var(--c2);color:var(--c2)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--mt);font-size:.75rem;letter-spacing:2px;display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* TICKER */
+.ticker{position:relative;z-index:10;overflow:hidden;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:.6rem 0;background:rgba(255,62,168,.05)}
+.ticker-inner{display:flex;gap:3rem;white-space:nowrap;animation:tick 20s linear infinite}
+.ticker-item{font-family:'Orbitron',sans-serif;font-size:.72rem;letter-spacing:3px;color:var(--c);text-transform:uppercase}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SERVICIOS */
+.section{position:relative;z-index:10;padding:5rem 1.5rem;max-width:1100px;margin:0 auto}
+.sec-label{font-family:'Orbitron',sans-serif;font-size:.68rem;letter-spacing:4px;color:var(--c);text-transform:uppercase;margin-bottom:.6rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,4rem);line-height:1;margin-bottom:.6rem}
+.sec-sub{color:var(--mt);font-size:1rem;margin-bottom:3rem;max-width:500px}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,62,168,.04),transparent);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:0 20px 40px rgba(255,62,168,.12)}
+.card:hover::before{opacity:1}
+.card-ico{font-size:2.2rem;margin-bottom:.8rem}
+.card-title{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;color:var(--txt);margin-bottom:.4rem}
+.card-desc{color:var(--mt);font-size:.88rem;line-height:1.5;margin-bottom:.8rem}
+.card-price{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;background:linear-gradient(135deg,var(--c),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* PRECIOS */
+.precios-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.precio-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem;text-align:center;transition:all .25s}
+.precio-card.featured{border-color:var(--c);background:linear-gradient(135deg,rgba(255,62,168,.08),var(--bg2))}
+.precio-card:hover{transform:translateY(-3px);border-color:var(--c2)}
+.precio-badge{font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:2px;background:linear-gradient(135deg,var(--c),var(--c2));color:#07070f;padding:.2rem .6rem;border-radius:10px;display:inline-block;margin-bottom:.8rem}
+.precio-nombre{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;margin-bottom:.3rem}
+.precio-monto{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--c3),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem}
+.precio-lista{list-style:none;text-align:left;font-size:.85rem;color:var(--mt);line-height:2}
+.precio-lista li::before{content:'✓ ';color:var(--c)}
+
+/* LINKS EXTERNOS */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}
+.link-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:1.1rem 1.3rem;text-decoration:none;color:var(--txt);display:flex;align-items:center;gap:.8rem;transition:all .25s}
+.link-card:hover{border-color:var(--c2);transform:translateY(-2px);box-shadow:0 10px 25px rgba(45,216,255,.1)}
+.link-ico{font-size:1.6rem;flex-shrink:0}
+.link-info strong{display:block;font-family:'Orbitron',sans-serif;font-size:.72rem;color:var(--txt)}
+.link-info span{font-size:.78rem;color:var(--mt)}
+
+/* CONTACTO */
+.contacto-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;padding:2.5rem;text-align:center;max-width:600px;margin:0 auto}
+.contacto-box h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;margin-bottom:.5rem}
+.contacto-box p{color:var(--mt);margin-bottom:2rem;font-size:.95rem}
+.contacto-btns{display:flex;flex-direction:column;gap:.7rem}
+.c-btn{display:flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem;border-radius:12px;text-decoration:none;font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:1px;transition:all .25s}
+.c-btn-wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff}
+.c-btn-tg{background:linear-gradient(135deg,#229ed9,#1a7ab5);color:#fff}
+.c-btn-mail{background:rgba(255,184,77,.1);border:1px solid rgba(255,184,77,.3);color:var(--c3)}
+.c-btn-tel{background:rgba(45,216,255,.08);border:1px solid rgba(45,216,255,.2);color:var(--c2)}
+.c-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+
+/* FOOTER */
+footer{position:relative;z-index:10;border-top:1px solid var(--bdr);padding:2rem 1.5rem;text-align:center}
+.footer-logo{font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--c),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem}
+.footer-sub{color:var(--mt);font-size:.8rem;margin-bottom:1rem}
+.footer-links{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.footer-links a{color:var(--mt);text-decoration:none;font-size:.8rem;transition:color .2s}
+.footer-links a:hover{color:var(--c)}
+
+/* PORTAFOLIO */
+.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.port-item{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--bdr);background:var(--bg2);aspect-ratio:4/3;cursor:pointer;transition:all .25s}
+.port-item:hover{border-color:var(--c);transform:translateY(-4px);box-shadow:0 20px 40px rgba(255,62,168,.15)}
+.port-item:hover .port-overlay{opacity:1}
+.port-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.port-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,62,168,.85),rgba(45,216,255,.7));display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;padding:1.5rem;text-align:center}
+.port-overlay strong{font-family:'Orbitron',sans-serif;font-size:.85rem;color:#07070f;display:block;margin-bottom:.3rem}
+.port-overlay span{font-size:.78rem;color:rgba(7,7,15,.8)}
+.port-tag{position:absolute;top:.7rem;left:.7rem;font-family:'Orbitron',sans-serif;font-size:.6rem;letter-spacing:2px;background:rgba(7,7,15,.85);color:var(--c);padding:.25rem .6rem;border-radius:10px;border:1px solid rgba(255,62,168,.3)}
+.port-coming{text-align:center;margin-top:2rem;color:var(--mt);font-size:.85rem}
+.port-coming span{color:var(--c);font-family:'Orbitron',sans-serif;font-size:.75rem}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--bdr);margin:0}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero-btns{flex-direction:column;align-items:center}
+  .contacto-box{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+<div class="amb"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">creativeHuentitan</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#links">Proyectos</a>
+    <a href="#contacto" class="nav-cta">Cotizar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">📍 Huentitán · Guadalajara · Jalisco</div>
+  <h1>
+    <span class="pink">DISEÑO</span><br>
+    <span class="blue">QUE</span><br>
+    <span class="pink">GOLPEA</span>
+  </h1>
+  <p class="hero-sub">
+    Tu negocio merece más que un flyer hecho en Paint.<br>
+    <span>Logos, promos, marketing digital y bots</span> — con IA, calidad real, precio de barrio.
+  </p>
+  <div class="hero-btns">
+    <a href="https://t.me/nautiluslabialocalbot" target="_blank" class="btn-primary">✈️ Hablar al Bot</a>
+    <a href="https://wa.me/523312563514" target="_blank" class="btn-sec">📱 WhatsApp</a>
+  </div>
+  <div class="hero-scroll">▼ VER SERVICIOS</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">🌮 Taquerías</span>
+    <span class="ticker-item">🦷 Dentales</span>
+    <span class="ticker-item">🍗 Pollerías</span>
+    <span class="ticker-item">💅 Belleza</span>
+    <span class="ticker-item">🔧 Ferreterías</span>
+    <span class="ticker-item">🍕 Pizzerías</span>
+    <span class="ticker-item">🛒 Abarrotes</span>
+    <span class="ticker-item">🤖 Bots Telegram</span>
+    <span class="ticker-item">🌮 Taquerías</span>
+    <span class="ticker-item">🦷 Dentales</span>
+    <span class="ticker-item">🍗 Pollerías</span>
+    <span class="ticker-item">💅 Belleza</span>
+    <span class="ticker-item">🔧 Ferreterías</span>
+    <span class="ticker-item">🍕 Pizzerías</span>
+    <span class="ticker-item">🛒 Abarrotes</span>
+    <span class="ticker-item">🤖 Bots Telegram</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <p class="sec-label">Lo que hacemos</p>
+  <h2 class="sec-title">SERVICIOS</h2>
+  <p class="sec-sub">Todo digital, todo rápido, todo con IA. Sin impresiones caras, sin intermediarios.</p>
+  <div class="grid3">
+    <div class="card">
+      <div class="card-ico">🎨</div>
+      <div class="card-title">Logo / Rebranding</div>
+      <div class="card-desc">Refresca tu logo o créalo desde cero. Profesional, memorable, tuyo.</div>
+      <div class="card-price">DESDE $350</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">📄</div>
+      <div class="card-title">Flyer Digital</div>
+      <div class="card-desc">Promos, eventos y ofertas listas para WhatsApp, Facebook e Instagram.</div>
+      <div class="card-price">DESDE $150</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">💳</div>
+      <div class="card-title">Tarjeta Digital</div>
+      <div class="card-desc">Tu presentación profesional directo al celular del cliente. Olvida el cartón.</div>
+      <div class="card-price">DESDE $200</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">📱</div>
+      <div class="card-title">Marketing Digital</div>
+      <div class="card-desc">Pack de stories, posts y status de WhatsApp. Contenido fresco cada semana.</div>
+      <div class="card-price">DESDE $400</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">📣</div>
+      <div class="card-title">Campaña Mensual</div>
+      <div class="card-desc">Diseño continuo para tu negocio. Tú vendes, nosotros diseñamos.</div>
+      <div class="card-price">DESDE $800</div>
+    </div>
+    <div class="card">
+      <div class="card-ico">🤖</div>
+      <div class="card-title">Bot de Telegram</div>
+      <div class="card-desc">Automatiza tu negocio. Atención, catálogo y pedidos sin que levantes el teléfono.</div>
+      <div class="card-price">DESDE $1,500</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRECIOS -->
+<section class="section" id="precios">
+  <p class="sec-label">Inversión</p>
+  <h2 class="sec-title">PRECIOS REALES</h2>
+  <p class="sec-sub">Sin letras chiquitas. Sin mensualidades escondidas. Pagas lo que acordamos.</p>
+  <div class="precios-grid">
+    <div class="precio-card">
+      <div class="precio-badge">ARRANQUE</div>
+      <div class="precio-nombre">BÁSICO</div>
+      <div class="precio-monto">$350 MXN</div>
+      <ul class="precio-lista">
+        <li>1 Diseño (logo o flyer)</li>
+        <li>2 revisiones incluidas</li>
+        <li>Entrega en 24-48 hrs</li>
+        <li>Formato PNG / JPG</li>
+      </ul>
+    </div>
+    <div class="precio-card featured">
+      <div class="precio-badge">⭐ MÁS PEDIDO</div>
+      <div class="precio-nombre">NEGOCIO</div>
+      <div class="precio-monto">$800 MXN</div>
+      <ul class="precio-lista">
+        <li>Logo + 5 flyers mensuales</li>
+        <li>Pack stories Instagram</li>
+        <li>Formato para WhatsApp</li>
+        <li>Revisiones ilimitadas</li>
+      </ul>
+    </div>
+    <div class="precio-card">
+      <div class="precio-badge">COMPLETO</div>
+      <div class="precio-nombre">PRO</div>
+      <div class="precio-monto">$1,500 MXN</div>
+      <ul class="precio-lista">
+        <li>Todo del plan Negocio</li>
+        <li>Bot de Telegram básico</li>
+        <li>Campaña mensual completa</li>
+        <li>Soporte directo por WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PORTAFOLIO -->
+<section class="section" id="portafolio">
+  <p class="sec-label">Trabajo real</p>
+  <h2 class="sec-title">PORTAFOLIO</h2>
+  <p class="sec-sub">Algunos de los diseños que han salido del lab — logos, flyers y campañas para negocios de Huentitán.</p>
+  <div class="port-grid">
+
+    <!-- 1 Logo taquería -->
+    <div class="port-item">
+      <div class="port-tag">LOGO</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#0e0e1c"/>
+          <defs>
+            <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff3ea8" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#0e0e1c" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g1)"/>
+          <circle cx="200" cy="130" r="52" fill="none" stroke="#ff3ea8" stroke-width="2" opacity=".7"/>
+          <circle cx="200" cy="130" r="40" fill="none" stroke="#2dd8ff" stroke-width="1" opacity=".4"/>
+          <text x="200" y="118" font-family="serif" font-size="28" fill="#ff3ea8" text-anchor="middle" opacity=".9">🌮</text>
+          <text x="200" y="148" font-family="monospace" font-size="11" fill="#2dd8ff" text-anchor="middle" letter-spacing="3">TAQUERÍA</text>
+          <text x="200" y="163" font-family="monospace" font-size="8" fill="#7b82a8" text-anchor="middle" letter-spacing="2">EL GÜERO</text>
+          <line x1="120" y1="200" x2="280" y2="200" stroke="#1e1e38" stroke-width="1"/>
+          <text x="200" y="220" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle" letter-spacing="1">DISEÑO CREATIVO HUENTITÁN</text>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Logo Taquería El Güero</strong>
+        <span>Rediseño de marca · entrega 24 hrs</span>
+      </div>
+    </div>
+
+    <!-- 2 Flyer pollería -->
+    <div class="port-item">
+      <div class="port-tag">FLYER</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#0a0a18"/>
+          <defs>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffb84d" stop-opacity=".12"/>
+              <stop offset="100%" stop-color="#ff3ea8" stop-opacity=".08"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g2)"/>
+          <rect x="30" y="25" width="340" height="250" rx="8" fill="none" stroke="#ffb84d" stroke-width="1" opacity=".4"/>
+          <rect x="30" y="25" width="340" height="70" rx="8" fill="#ffb84d" opacity=".08"/>
+          <text x="200" y="58" font-family="monospace" font-size="9" fill="#ffb84d" text-anchor="middle" letter-spacing="4">🍗 POLLERÍA LUPITA</text>
+          <text x="200" y="78" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle">HUENTITÁN EL BAJO</text>
+          <text x="200" y="135" font-family="sans-serif" font-size="36" fill="#ff3ea8" text-anchor="middle" font-weight="900">2×1</text>
+          <text x="200" y="158" font-family="monospace" font-size="8" fill="#2dd8ff" text-anchor="middle" letter-spacing="2">MIÉRCOLES DE OFERTA</text>
+          <text x="200" y="200" font-family="monospace" font-size="22" fill="#ffb84d" text-anchor="middle">$89</text>
+          <text x="200" y="218" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle">PIEZA + PAPAS + AGUA</text>
+          <text x="200" y="255" font-family="monospace" font-size="7" fill="#ff3ea8" text-anchor="middle" letter-spacing="1">📱 WA: 33 0000 0000</text>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Flyer Pollería Lupita</strong>
+        <span>Promoción semanal · WhatsApp ready</span>
+      </div>
+    </div>
+
+    <!-- 3 Tarjeta digital -->
+    <div class="port-item">
+      <div class="port-tag">TARJETA</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#07070f"/>
+          <defs>
+            <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2dd8ff" stop-opacity=".1"/>
+              <stop offset="100%" stop-color="#a374ff" stop-opacity=".06"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="55" width="320" height="190" rx="12" fill="url(#g3)" stroke="#2dd8ff" stroke-width="1" opacity=".5"/>
+          <circle cx="90" cy="130" r="30" fill="none" stroke="#2dd8ff" stroke-width="1.5" opacity=".6"/>
+          <text x="90" y="138" font-size="22" text-anchor="middle">💅</text>
+          <text x="220" y="115" font-family="monospace" font-size="11" fill="#e8eaf6" font-weight="bold">BELLEZA MONI</text>
+          <text x="220" y="132" font-family="monospace" font-size="7" fill="#7b82a8" letter-spacing="2">ESTÉTICA · UÑAS · SPA</text>
+          <line x1="165" y1="142" x2="355" y2="142" stroke="#1e1e38" stroke-width="1"/>
+          <text x="220" y="158" font-family="monospace" font-size="7" fill="#2dd8ff">📱 33 1234 5678</text>
+          <text x="220" y="173" font-family="monospace" font-size="7" fill="#7b82a8">📍 Huentitán el Bajo</text>
+          <text x="220" y="188" font-family="monospace" font-size="7" fill="#ff3ea8">📘 /bellezamoni</text>
+          <rect x="40" y="55" width="320" height="190" rx="12" fill="none" stroke="#a374ff" stroke-width=".5" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Tarjeta Digital Belleza Moni</strong>
+        <span>Estética local · diseño en 24 hrs</span>
+      </div>
+    </div>
+
+    <!-- 4 Post Instagram -->
+    <div class="port-item">
+      <div class="port-tag">REDES</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#0c0c1a"/>
+          <defs>
+            <radialGradient id="g4" cx="30%" cy="70%" r="60%">
+              <stop offset="0%" stop-color="#ff3ea8" stop-opacity=".15"/>
+              <stop offset="100%" stop-color="#0c0c1a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g4)"/>
+          <rect x="20" y="20" width="160" height="260" rx="8" fill="#1e1e38" stroke="#ff3ea8" stroke-width="1" opacity=".6"/>
+          <text x="100" y="100" font-size="40" text-anchor="middle">🔧</text>
+          <text x="100" y="125" font-family="monospace" font-size="9" fill="#ff3ea8" text-anchor="middle" letter-spacing="1">FERRETERÍA</text>
+          <text x="100" y="140" font-family="monospace" font-size="11" fill="#e8eaf6" text-anchor="middle" font-weight="bold">DON CHUY</text>
+          <text x="100" y="185" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle">TODO PARA</text>
+          <text x="100" y="200" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle">TU CONSTRUCCIÓN</text>
+          <text x="100" y="245" font-family="monospace" font-size="6" fill="#2dd8ff" text-anchor="middle">📍 HUE EL BAJO</text>
+          <rect x="200" y="20" width="180" height="125" rx="8" fill="#1e1e38" stroke="#2dd8ff" stroke-width="1" opacity=".5"/>
+          <text x="290" y="70" font-size="30" text-anchor="middle">🪟</text>
+          <text x="290" y="95" font-family="monospace" font-size="7" fill="#2dd8ff" text-anchor="middle">VENTANAS Y PUERTAS</text>
+          <text x="290" y="112" font-family="monospace" font-size="11" fill="#ffb84d" text-anchor="middle">-20%</text>
+          <rect x="200" y="155" width="180" height="125" rx="8" fill="#1e1e38" stroke="#ffb84d" stroke-width="1" opacity=".5"/>
+          <text x="290" y="205" font-size="30" text-anchor="middle">⚙️</text>
+          <text x="290" y="230" font-family="monospace" font-size="7" fill="#ffb84d" text-anchor="middle">HERRAMIENTA</text>
+          <text x="290" y="247" font-family="monospace" font-size="7" fill="#ffb84d" text-anchor="middle">PROFESIONAL</text>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Pack Redes Ferretería</strong>
+        <span>3 posts Instagram · campaña mensual</span>
+      </div>
+    </div>
+
+    <!-- 5 Logo dental -->
+    <div class="port-item">
+      <div class="port-tag">LOGO</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#08081a"/>
+          <defs>
+            <radialGradient id="g5" cx="50%" cy="40%" r="45%">
+              <stop offset="0%" stop-color="#2dd8ff" stop-opacity=".12"/>
+              <stop offset="100%" stop-color="#08081a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g5)"/>
+          <polygon points="200,55 240,90 230,140 200,155 170,140 160,90" fill="none" stroke="#2dd8ff" stroke-width="2" opacity=".7"/>
+          <polygon points="200,68 228,96 220,135 200,147 180,135 172,96" fill="rgba(45,216,255,.05)"/>
+          <text x="200" y="120" font-size="32" text-anchor="middle">🦷</text>
+          <text x="200" y="185" font-family="monospace" font-size="13" fill="#2dd8ff" text-anchor="middle" letter-spacing="3">DENTAL</text>
+          <text x="200" y="203" font-family="monospace" font-size="10" fill="#e8eaf6" text-anchor="middle" letter-spacing="4">HUENTITÁN</text>
+          <line x1="140" y1="215" x2="260" y2="215" stroke="#1e1e38" stroke-width="1"/>
+          <text x="200" y="232" font-family="monospace" font-size="6" fill="#7b82a8" text-anchor="middle" letter-spacing="2">DR. ALEJANDRO TORRES · CDO.</text>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Logo Dental Huentitán</strong>
+        <span>Identidad clínica · versión light + dark</span>
+      </div>
+    </div>
+
+    <!-- 6 Bot Telegram -->
+    <div class="port-item">
+      <div class="port-tag">BOT</div>
+      <div class="port-placeholder">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="400" height="300" fill="#0a0818"/>
+          <defs>
+            <radialGradient id="g6" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#a374ff" stop-opacity=".15"/>
+              <stop offset="100%" stop-color="#0a0818" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#g6)"/>
+          <rect x="110" y="40" width="180" height="220" rx="16" fill="#0e0e1c" stroke="#a374ff" stroke-width="1.5" opacity=".8"/>
+          <rect x="110" y="40" width="180" height="40" rx="16" fill="#a374ff" opacity=".15"/>
+          <text x="200" y="67" font-family="monospace" font-size="8" fill="#a374ff" text-anchor="middle" letter-spacing="1">🤖 NAUTILUSBOT</text>
+          <rect x="125" y="95" width="110" height="22" rx="6" fill="#1e1e38"/>
+          <text x="180" y="111" font-family="monospace" font-size="7" fill="#7b82a8" text-anchor="middle">Hola, ¿en qué te ayudo?</text>
+          <rect x="165" y="128" width="105" height="22" rx="6" fill="rgba(163,116,255,.2)" stroke="#a374ff" stroke-width=".5"/>
+          <text x="217" y="144" font-family="monospace" font-size="7" fill="#a374ff" text-anchor="middle">Quiero un logo 🎨</text>
+          <rect x="125" y="161" width="120" height="32" rx="6" fill="#1e1e38"/>
+          <text x="185" y="175" font-family="monospace" font-size="6" fill="#7b82a8" text-anchor="middle">¡Perfecto! Cuéntame</text>
+          <text x="185" y="187" font-family="monospace" font-size="6" fill="#7b82a8" text-anchor="middle">tu giro y te cotizo 🚀</text>
+          <rect x="122" y="210" width="156" height="28" rx="10" fill="#a374ff" opacity=".2" stroke="#a374ff" stroke-width=".8"/>
+          <text x="200" y="229" font-family="monospace" font-size="7" fill="#a374ff" text-anchor="middle">✈️ Abrir en Telegram</text>
+        </svg>
+      </div>
+      <div class="port-overlay">
+        <strong>Bot de Cotización Telegram</strong>
+        <span>Respuesta automática 24/7 · listo en 3 días</span>
+      </div>
+    </div>
+
+  </div>
+  <p class="port-coming">
+    ¿Quieres ver tu negocio aquí? →
+    <a href="https://wa.me/523312563514" target="_blank" style="color:var(--c);text-decoration:none">
+      <span>CONTÁCTANOS</span>
+    </a>
+  </p>
+</section>
+
+<hr class="divider">
+
+<!-- LINKS / PROYECTOS -->
+<section class="section" id="links">
+  <p class="sec-label">Ecosistema</p>
+  <h2 class="sec-title">NUESTROS PROYECTOS</h2>
+  <p class="sec-sub">Más allá del diseño — apps, herramientas y contenido del laboratorio.</p>
+  <div class="links-grid">
+    <a href="https://ferplex12.itch.io/talleros" target="_blank" class="link-card">
+      <div class="link-ico">🏭</div>
+      <div class="link-info">
+        <strong>TALLER·OS</strong>
+        <span>Panel de operaciones con IA local para tu negocio — $8 USD</span>
+      </div>
+    </a>
+    <a href="https://ferplex12.itch.io" target="_blank" class="link-card">
+      <div class="link-ico">🎮</div>
+      <div class="link-info">
+        <strong>ITCH.IO — ASSETS</strong>
+        <span>Packs cyberpunk, voxel, GTA VI aesthetic y más</span>
+      </div>
+    </a>
+    <a href="https://ferplexnauti.blogspot.com" target="_blank" class="link-card">
+      <div class="link-ico">📝</div>
+      <div class="link-info">
+        <strong>BLOG — NAUTILUS</strong>
+        <span>Proyectos, tutoriales y el laboratorio en acción</span>
+      </div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61592306938154" target="_blank" class="link-card">
+      <div class="link-ico">📘</div>
+      <div class="link-info">
+        <strong>FACEBOOK</strong>
+        <span>Síguenos para promos y novedades del estudio</span>
+      </div>
+    </a>
+    <a href="https://www.tiktok.com/@nautiluslabarch" target="_blank" class="link-card">
+      <div class="link-ico">🎵</div>
+      <div class="link-info">
+        <strong>TIKTOK</strong>
+        <span>@nautiluslabarch — proceso, diseño y lab en vivo</span>
+      </div>
+    </a>
+    <a href="https://t.me/nautiluslabialocalbot" target="_blank" class="link-card">
+      <div class="link-ico">✈️</div>
+      <div class="link-info">
+        <strong>BOT DE TELEGRAM</strong>
+        <span>Cotiza, pregunta y recibe atención automática</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACTO -->
+<section class="section" id="contacto">
+  <p class="sec-label">Hablemos</p>
+  <h2 class="sec-title" style="text-align:center">CONTÁCTANOS</h2>
+  <div class="contacto-box">
+    <h3>¿LISTO PARA<br>DESTACAR?</h3>
+    <p>Cuéntanos qué necesita tu negocio — te respondemos rápido y sin rodeos.</p>
+    <div class="contacto-btns">
+      <a href="https://wa.me/523312563514" target="_blank" class="c-btn c-btn-wa">
+        📱 WhatsApp — 33 1256 3514
+      </a>
+      <a href="https://t.me/nautiluslabialocalbot" target="_blank" class="c-btn c-btn-tg">
+        ✈️ Bot de Telegram — Respuesta inmediata
+      </a>
+      <a href="mailto:Nautiluslaboratories@proton.me" class="c-btn c-btn-mail">
+        📧 Nautiluslaboratories@proton.me
+      </a>
+      <a href="tel:3312563514" class="c-btn c-btn-tel">
+        📞 Llamar — 33 1256 3514
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">creativeHuentitan</div>
+  <div class="footer-sub">Huentitán · Guadalajara · Jalisco · nautiluslocal.xyz</div>
+  <div class="footer-links">
+    <a href="https://ferplex12.itch.io/talleros" target="_blank">TALLER·OS</a>
+    <a href="https://ferplex12.itch.io" target="_blank">Itch.io</a>
+    <a href="https://ferplexnauti.blogspot.com" target="_blank">Blog</a>
+    <a href="https://www.facebook.com/profile.php?id=61592306938154" target="_blank">Facebook</a>
+    <a href="https://www.tiktok.com/@nautiluslabarch" target="_blank">TikTok</a>
+    <a href="https://t.me/nautiluslabialocalbot" target="_blank">Telegram Bot</a>
+  </div>
+</footer>
+
+</body>
+</html>
