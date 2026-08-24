@@ -1,0 +1,341 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.nl-root{font-family:'Rajdhani',sans-serif;background:#080c14;color:#e8eaf0;overflow-x:hidden;}
+.nl-nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;border-bottom:1px solid rgba(45,216,255,0.15);position:sticky;top:0;background:rgba(8,12,20,0.92);backdrop-filter:blur(10px);z-index:100;}
+.nl-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;letter-spacing:0.15em;color:#2dd8ff;}
+.nl-logo span{color:#ff3ea8;}
+.nl-nav-links{display:flex;gap:2rem;list-style:none;}
+.nl-nav-links a{color:rgba(232,234,240,0.6);text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+.nl-nav-links a:hover{color:#2dd8ff;}
+.nl-nav-cta{background:transparent;border:1px solid #2dd8ff;color:#2dd8ff;padding:0.5rem 1.2rem;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;}
+.nl-nav-cta:hover{background:#2dd8ff;color:#080c14;}
+
+.nl-hero{position:relative;height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.nl-parallax-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(45,216,255,0.07) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(163,116,255,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(255,62,168,0.06) 0%,transparent 50%);will-change:transform;}
+.nl-stars{position:absolute;inset:0;will-change:transform;}
+.nl-star{position:absolute;background:#fff;border-radius:50%;}
+.nl-hero-content{position:relative;z-index:2;padding:0 2rem;}
+.nl-eyebrow{font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:#2dd8ff;margin-bottom:1.2rem;font-weight:500;}
+.nl-hero h1{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;color:#fff;}
+.nl-hero h1 em{font-style:normal;color:#2dd8ff;}
+.nl-hero h1 .pk{color:#ff3ea8;}
+.nl-hero-sub{font-size:1.1rem;color:rgba(232,234,240,0.5);max-width:500px;margin:0 auto 2rem;line-height:1.6;font-weight:300;}
+.nl-hero-badges{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.nl-badge{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid rgba(45,216,255,0.3);color:rgba(45,216,255,0.7);font-weight:500;}
+.nl-hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:#2dd8ff;color:#080c14;border:none;padding:0.75rem 1.8rem;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#fff;}
+.btn-ghost{background:transparent;color:#e8eaf0;border:1px solid rgba(232,234,240,0.25);padding:0.75rem 1.8rem;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:#ff3ea8;color:#ff3ea8;}
+
+.nl-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:rgba(45,216,255,0.1);border-top:1px solid rgba(45,216,255,0.1);border-bottom:1px solid rgba(45,216,255,0.1);}
+.nl-stat{background:#080c14;padding:1.6rem 1.2rem;text-align:center;}
+.nl-stat-num{font-family:'Orbitron',monospace;font-size:1.7rem;font-weight:900;color:#2dd8ff;display:block;}
+.nl-stat-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(232,234,240,0.4);margin-top:0.3rem;}
+
+.nl-section{padding:4rem 2.5rem;}
+.nl-section-label{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#ff3ea8;margin-bottom:0.75rem;display:block;}
+.nl-section-title{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2rem;}
+
+.nl-products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,0.05);}
+.nl-product-card{background:#0d1320;padding:1.6rem;cursor:pointer;transition:background 0.2s;border-top:2px solid transparent;text-decoration:none;display:block;color:inherit;}
+.nl-product-card:hover{background:#111827;}
+.nl-product-card.games{border-top-color:#2dd8ff;}
+.nl-product-card.audio{border-top-color:#ff3ea8;}
+.nl-product-card.software{border-top-color:#a374ff;}
+.nl-product-card.tools{border-top-color:#ffb84d;}
+.nl-product-cat{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;}
+.nl-product-card.games .nl-product-cat{color:#2dd8ff;}
+.nl-product-card.audio .nl-product-cat{color:#ff3ea8;}
+.nl-product-card.software .nl-product-cat{color:#a374ff;}
+.nl-product-card.tools .nl-product-cat{color:#ffb84d;}
+.nl-product-name{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
+.nl-product-desc{font-size:0.82rem;color:rgba(232,234,240,0.5);line-height:1.5;margin-bottom:0.8rem;}
+.nl-product-tag{display:inline-block;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.1);color:rgba(232,234,240,0.35);}
+.nl-product-card.games .nl-product-tag{border-color:rgba(45,216,255,0.2);color:rgba(45,216,255,0.5);}
+.nl-product-card.audio .nl-product-tag{border-color:rgba(255,62,168,0.2);color:rgba(255,62,168,0.5);}
+.nl-product-card.software .nl-product-tag{border-color:rgba(163,116,255,0.2);color:rgba(163,116,255,0.5);}
+.nl-product-card.tools .nl-product-tag{border-color:rgba(255,184,77,0.2);color:rgba(255,184,77,0.5);}
+
+.nl-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(45,216,255,0.2),rgba(255,62,168,0.2),transparent);margin:0 2.5rem;}
+
+.nl-latam{background:#0a0f1a;padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.nl-latam-text h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1rem;line-height:1.3;}
+.nl-latam-text p{color:rgba(232,234,240,0.5);line-height:1.7;font-size:0.92rem;margin-bottom:1.2rem;}
+.nl-latam-flags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.nl-flag{font-size:0.68rem;letter-spacing:0.1em;padding:0.22rem 0.65rem;border:1px solid rgba(163,116,255,0.3);color:rgba(163,116,255,0.7);}
+.nl-manifesto{background:rgba(45,216,255,0.03);border:1px solid rgba(45,216,255,0.1);padding:2rem;font-family:'Orbitron',monospace;font-size:0.82rem;line-height:2;color:rgba(232,234,240,0.6);letter-spacing:0.05em;}
+.nl-manifesto strong{color:#2dd8ff;}
+
+.nl-community{padding:4rem 2.5rem;background:#080c14;}
+.nl-bots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(255,255,255,0.05);margin-top:0.5rem;}
+.nl-bot-card{background:#0d1320;padding:2rem;display:flex;flex-direction:column;gap:1rem;}
+.nl-bot-platform{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;}
+.nl-bot-card.tg .nl-bot-platform{color:#2dd8ff;}
+.nl-bot-card.wa .nl-bot-platform{color:#25d366;}
+.nl-bot-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.nl-bot-card.tg .nl-bot-icon{background:rgba(45,216,255,0.1);border:1px solid rgba(45,216,255,0.2);}
+.nl-bot-card.wa .nl-bot-icon{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);}
+.nl-bot-name{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;}
+.nl-bot-handle{font-size:0.75rem;color:rgba(232,234,240,0.4);margin-top:-0.5rem;}
+.nl-bot-desc{font-size:0.85rem;color:rgba(232,234,240,0.5);line-height:1.5;}
+.nl-bot-features{display:flex;flex-direction:column;gap:0.3rem;}
+.nl-bot-feature{font-size:0.72rem;color:rgba(232,234,240,0.4);padding-left:0.8rem;position:relative;}
+.nl-bot-feature::before{content:'›';position:absolute;left:0;}
+.nl-bot-card.tg .nl-bot-feature::before{color:#2dd8ff;}
+.nl-bot-card.wa .nl-bot-feature::before{color:#25d366;}
+.nl-bot-cta{margin-top:auto;background:transparent;border:1px solid;padding:0.6rem 1.2rem;font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;text-align:center;font-weight:700;}
+.nl-bot-card.tg .nl-bot-cta{border-color:rgba(45,216,255,0.4);color:#2dd8ff;}
+.nl-bot-card.tg .nl-bot-cta:hover{background:#2dd8ff;color:#080c14;}
+.nl-bot-card.wa .nl-bot-cta{border-color:rgba(37,211,102,0.4);color:#25d366;}
+.nl-bot-card.wa .nl-bot-cta:hover{background:#25d366;color:#080c14;}
+
+.nl-footer{padding:2rem 2.5rem;border-top:1px solid rgba(45,216,255,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.nl-footer-logo{font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:900;color:rgba(45,216,255,0.5);letter-spacing:0.15em;}
+.nl-footer-copy{font-size:0.72rem;color:rgba(232,234,240,0.25);letter-spacing:0.05em;}
+.nl-footer-links{display:flex;gap:1.5rem;list-style:none;}
+.nl-footer-links a{font-size:0.72rem;color:rgba(232,234,240,0.35);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;}
+.nl-footer-links a:hover{color:#2dd8ff;}
+
+@media(max-width:640px){
+  .nl-latam{grid-template-columns:1fr;gap:2rem;}
+  .nl-nav-links{display:none;}
+  .nl-hero{height:auto;padding:4rem 1.5rem 3rem;}
+  .nl-section,.nl-latam,.nl-community{padding:3rem 1.5rem;}
+}
+</style>
+
+<div class="nl-root">
+
+<nav class="nl-nav">
+  <div class="nl-logo">NAUTILUS<span>·</span>LAB</div>
+  <ul class="nl-nav-links">
+    <li><a href="#">Games</a></li>
+    <li><a href="#">Software</a></li>
+    <li><a href="#">Audio</a></li>
+    <li><a href="#">Comunidad</a></li>
+  </ul>
+  <button class="nl-nav-cta" onclick="openLink('https://nautlab.itch.io')">Ver catálogo</button>
+</nav>
+
+<section class="nl-hero">
+  <div class="nl-parallax-bg" id="parallaxBg"></div>
+  <div class="nl-stars" id="starsLayer"></div>
+  <div class="nl-hero-content">
+    <p class="nl-eyebrow">Guadalajara · México · Est. 2024</p>
+    <h1>Software que<br><em>realmente</em> <span class="pk">funciona.</span></h1>
+    <p class="nl-hero-sub">Juegos, herramientas de audio y software de negocios — hecho desde cero, sin plantillas, sin nube, sin suscripciones.</p>
+    <div class="nl-hero-badges">
+      <span class="nl-badge">100% Local-First</span>
+      <span class="nl-badge">Sin Suscripciones</span>
+      <span class="nl-badge">Browser Ready</span>
+      <span class="nl-badge">Hecho en LATAM</span>
+    </div>
+    <div class="nl-hero-ctas">
+      <a href="https://nautlab.itch.io" class="btn-primary">Explorar en itch.io</a>
+      <button class="btn-ghost" onclick="openLink('https://t.me/nautiluslabialocalbot')">Bot Telegram ↗</button>
+    </div>
+  </div>
+</section>
+
+<div class="nl-stats">
+  <div class="nl-stat"><span class="nl-stat-num">12+</span><span class="nl-stat-label">Productos activos</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">3</span><span class="nl-stat-label">Juegos en CrazyGames</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">0</span><span class="nl-stat-label">Servidores externos</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">∞</span><span class="nl-stat-label">Offline siempre</span></div>
+</div>
+
+<section class="nl-section">
+  <span class="nl-section-label">Catálogo</span>
+  <h2 class="nl-section-title">Todo el arsenal</h2>
+  <div class="nl-products-grid">
+    <div class="nl-product-card games">
+      <div class="nl-product-cat">Arcade · Browser Game</div>
+      <div class="nl-product-name">NEON VAULT</div>
+      <div class="nl-product-desc">Arcade multi-juego — Arkanoid, Snake, Tetris, Space Hunter con créditos sincronizados.</div>
+      <span class="nl-product-tag">CrazyGames · GitHub Pages</span>
+    </div>
+    <div class="nl-product-card games">
+      <div class="nl-product-cat">Shooter · Browser Game</div>
+      <div class="nl-product-name">NEON R</div>
+      <div class="nl-product-desc">Shooter vertical neón con controles táctiles. Soundtrack thrash metal 200bpm propio.</div>
+      <span class="nl-product-tag">Awaiting Review</span>
+    </div>
+    <div class="nl-product-card games">
+      <div class="nl-product-cat">Space Shooter · Browser</div>
+      <div class="nl-product-name">G SPACE</div>
+      <div class="nl-product-desc">Shooter espacial con arte propio, misiles, audio por nivel y SDK CrazyGames v3.</div>
+      <span class="nl-product-tag">Awaiting Review</span>
+    </div>
+    <div class="nl-product-card audio">
+      <div class="nl-product-cat">Síntesis · Browser Tool</div>
+      <div class="nl-product-name">SYNTH PRO</div>
+      <div class="nl-product-desc">Sintetizador FM — 3 canales, arpeggiador, delay, glitch, grabación WAV, espectro visual.</div>
+      <span class="nl-product-tag">Browser · Offline</span>
+    </div>
+    <div class="nl-product-card audio">
+      <div class="nl-product-cat">TTS · Narración</div>
+      <div class="nl-product-name">NARRATOR PRO</div>
+      <div class="nl-product-desc">Narración en browser con voces por personaje y efectos. Sin servidor, sin API key.</div>
+      <span class="nl-product-tag">Browser · Local</span>
+    </div>
+    <div class="nl-product-card audio">
+      <div class="nl-product-cat">DJ Visuals · VJ</div>
+      <div class="nl-product-name">VJ ENGINE</div>
+      <div class="nl-product-desc">Motor de visuales audio-reactivos para eventos en vivo y YouTube. Vanilla JS.</div>
+      <span class="nl-product-tag">Live Events · Browser</span>
+    </div>
+    <div class="nl-product-card software">
+      <div class="nl-product-cat">Business OS · Windows</div>
+      <div class="nl-product-name">TALLER·OS</div>
+      <div class="nl-product-desc">Panel de operaciones para talleres — IA local con voz, inventario, ventas. 100% offline.</div>
+      <span class="nl-product-tag">Electron · Ollama · itch.io</span>
+    </div>
+    <div class="nl-product-card software">
+      <div class="nl-product-cat">Productividad · Windows</div>
+      <div class="nl-product-name">NAUTILUS BITÁCORA</div>
+      <div class="nl-product-desc">Dashboard con chat IA streaming, 5 modos AI y estética Jules Verne. Electron Windows.</div>
+      <span class="nl-product-tag">Electron · Ollama · Local</span>
+    </div>
+    <div class="nl-product-card tools">
+      <div class="nl-product-cat">Imagen · AI Tool</div>
+      <div class="nl-product-name">MANGAAI PRO</div>
+      <div class="nl-product-desc">Generación de imágenes manga con multi-resolución y presets de personajes.</div>
+      <span class="nl-product-tag">Pollinations · InvokeAI</span>
+    </div>
+  </div>
+</section>
+
+<div class="nl-divider"></div>
+
+<section class="nl-community">
+  <span class="nl-section-label">Comunidad</span>
+  <h2 class="nl-section-title">Conecta con Nautilus Lab</h2>
+  <div class="nl-bots-grid">
+
+    <div class="nl-bot-card tg">
+      <div class="nl-bot-platform">Telegram · Bot IA</div>
+      <div class="nl-bot-icon">✦</div>
+      <div class="nl-bot-name">NAUTIA LOCAL BOT</div>
+      <div class="nl-bot-handle">@nautiluslabialocalbot</div>
+      <div class="nl-bot-desc">Instalamos inteligencia artificial directo en tu equipo: sin nube. Noticias, rewards y más.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Noticias GTA6 desde la página oficial, cada día</div>
+        <div class="nl-bot-feature">Sistema de rewards y puntos</div>
+        <div class="nl-bot-feature">Wallpapers e imágenes AI</div>
+        <div class="nl-bot-feature">IA local sin internet</div>
+      </div>
+      <a href="https://t.me/nautiluslabialocalbot" class="nl-bot-cta">Abrir en Telegram ↗</a>
+    </div>
+
+    <div class="nl-bot-card wa">
+      <div class="nl-bot-platform">WhatsApp · Soporte</div>
+      <div class="nl-bot-icon">◈</div>
+      <div class="nl-bot-name">SOPORTE NAUTILUS</div>
+      <div class="nl-bot-handle">+52 331 256 3514</div>
+      <div class="nl-bot-desc">Atención directa para ventas y soporte técnico de todos los productos Nautilus Lab.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Ventas y licencias</div>
+        <div class="nl-bot-feature">Soporte técnico directo</div>
+        <div class="nl-bot-feature">Instalación de IA local (TALLER·OS, Bitácora)</div>
+        <div class="nl-bot-feature">Atención en español</div>
+      </div>
+      <a href="https://wa.me/523312563514" class="nl-bot-cta">Escribir por WhatsApp ↗</a>
+    </div>
+
+    <div class="nl-bot-card tg">
+      <div class="nl-bot-platform">Telegram · Canal</div>
+      <div class="nl-bot-icon">◉</div>
+      <div class="nl-bot-name">NAUTILUS UPDATES</div>
+      <div class="nl-bot-handle">@nautiluslabarch</div>
+      <div class="nl-bot-desc">Lanzamientos, actualizaciones y contenido de Nautilus Lab directo a tu Telegram.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Nuevos lanzamientos</div>
+        <div class="nl-bot-feature">Assets y wallpapers gratis</div>
+        <div class="nl-bot-feature">Behind the scenes del studio</div>
+      </div>
+      <a href="https://t.me/nautiluslabarch" class="nl-bot-cta">Seguir canal ↗</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="nl-divider"></div>
+
+<section class="nl-latam" style="padding:4rem 2.5rem;">
+  <div class="nl-latam-text">
+    <span class="nl-section-label">Hecho en México</span>
+    <h2>Software de LATAM<br>para el mundo.</h2>
+    <p>Todo nace desde Guadalajara — sin VC, sin oficina, sin pretextos. Infraestructura local, cero dependencias externas.</p>
+    <p>TALLER·OS lo usa un mecánico en Tlaquepaque. NEON VAULT se juega en Brasil. El Synth Pro suena en estudios de Colombia.</p>
+    <div class="nl-latam-flags">
+      <span class="nl-flag">🇲🇽 México</span>
+      <span class="nl-flag">🇧🇷 Brasil</span>
+      <span class="nl-flag">🇨🇴 Colombia</span>
+      <span class="nl-flag">🇦🇷 Argentina</span>
+      <span class="nl-flag">+ Todo LATAM</span>
+    </div>
+  </div>
+  <div class="nl-manifesto">
+    <strong>// FILOSOFÍA</strong><br><br>
+    Sin plantillas.<br>
+    Sin suscripciones.<br>
+    Sin servidor tuyo en la nube de alguien más.<br><br>
+    <strong>Tu software.</strong><br>
+    <strong>Tu máquina.</strong><br>
+    <strong>Tus datos.</strong><br><br>
+    — Nautilus Lab, Jalisco MX
+  </div>
+</section>
+
+<footer class="nl-footer">
+  <div class="nl-footer-logo">NAUTILUS·LAB</div>
+  <ul class="nl-footer-links">
+    <li><a href="https://nautlab.itch.io">itch.io</a></li>
+    <li><a href="https://nautilulab.gumroad.com">Gumroad</a></li>
+    <li><a href="https://ferplex.github.io/neon-v/">NEON VAULT</a></li>
+    <li><a href="https://t.me/nautiluslabialocalbot">Telegram</a></li>
+  </ul>
+  <span class="nl-footer-copy">© 2024–2026 Nautilus Lab · Guadalajara, MX</span>
+</footer>
+
+</div>
+
+<script>
+const stars = document.getElementById('starsLayer');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='nl-star';
+  const sz=Math.random()*2+0.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:${Math.random()*0.6+0.1};`;
+  stars.appendChild(s);
+}
+
+const hero=document.querySelector('.nl-hero');
+const bg=document.getElementById('parallaxBg');
+const sl=document.getElementById('starsLayer');
+
+hero.addEventListener('mousemove',e=>{
+  const r=hero.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-0.5;
+  const y=(e.clientY-r.top)/r.height-0.5;
+  bg.style.transform=`translate(${x*20}px,${y*12}px)`;
+  sl.style.transform=`translate(${x*35}px,${y*20}px)`;
+});
+
+hero.addEventListener('mouseleave',()=>{
+  bg.style.transform='';
+  sl.style.transform='';
+  bg.style.transition='transform 0.8s ease';
+  sl.style.transition='transform 0.8s ease';
+  setTimeout(()=>{bg.style.transition='';sl.style.transition='';},800);
+});
+
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  bg.style.transform=`translateY(${y*0.3}px)`;
+  sl.style.transform=`translateY(${y*0.5}px)`;
+});
+</script>
