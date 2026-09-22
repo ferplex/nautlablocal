@@ -1,0 +1,621 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.nl-root{font-family:'Rajdhani',sans-serif;background:#080c14;color:#e8eaf0;overflow-x:hidden;}
+.nl-nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;border-bottom:1px solid rgba(45,216,255,0.15);position:sticky;top:0;background:rgba(8,12,20,0.92);backdrop-filter:blur(10px);z-index:100;}
+.nl-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;letter-spacing:0.15em;color:#2dd8ff;}
+.nl-logo span{color:#ff3ea8;}
+.nl-nav-links{display:flex;gap:2rem;list-style:none;}
+.nl-nav-links a{color:rgba(232,234,240,0.6);text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+.nl-nav-links a:hover{color:#2dd8ff;}
+.nl-nav-cta{background:transparent;border:1px solid #2dd8ff;color:#2dd8ff;padding:0.5rem 1.2rem;font-family:'Orbitron',monospace;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;}
+.nl-nav-cta:hover{background:#2dd8ff;color:#080c14;}
+
+.nl-hero{position:relative;height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.nl-parallax-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(45,216,255,0.07) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(163,116,255,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(255,62,168,0.06) 0%,transparent 50%);will-change:transform;}
+.nl-stars{position:absolute;inset:0;will-change:transform;}
+.nl-star{position:absolute;background:#fff;border-radius:50%;}
+.nl-hero-content{position:relative;z-index:2;padding:0 2rem;}
+.nl-eyebrow{font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:#2dd8ff;margin-bottom:1.2rem;font-weight:500;}
+.nl-hero h1{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;color:#fff;}
+.nl-hero h1 em{font-style:normal;color:#2dd8ff;}
+.nl-hero h1 .pk{color:#ff3ea8;}
+.nl-hero-sub{font-size:1.1rem;color:rgba(232,234,240,0.5);max-width:500px;margin:0 auto 2rem;line-height:1.6;font-weight:300;}
+.nl-hero-badges{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.nl-badge{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid rgba(45,216,255,0.3);color:rgba(45,216,255,0.7);font-weight:500;}
+.nl-hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:#2dd8ff;color:#080c14;border:none;padding:0.75rem 1.8rem;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#fff;}
+.btn-ghost{background:transparent;color:#e8eaf0;border:1px solid rgba(232,234,240,0.25);padding:0.75rem 1.8rem;font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.btn-ghost:hover{border-color:#ff3ea8;color:#ff3ea8;}
+
+.nl-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:rgba(45,216,255,0.1);border-top:1px solid rgba(45,216,255,0.1);border-bottom:1px solid rgba(45,216,255,0.1);}
+.nl-stat{background:#080c14;padding:1.6rem 1.2rem;text-align:center;}
+.nl-stat-num{font-family:'Orbitron',monospace;font-size:1.7rem;font-weight:900;color:#2dd8ff;display:block;}
+.nl-stat-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(232,234,240,0.4);margin-top:0.3rem;}
+
+.nl-section{padding:4rem 2.5rem;}
+.nl-section-label{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#ff3ea8;margin-bottom:0.75rem;display:block;}
+.nl-section-title{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2rem;}
+
+.nl-products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,0.05);}
+.nl-product-card{background:#0d1320;padding:1.6rem;cursor:pointer;transition:background 0.2s;border-top:2px solid transparent;text-decoration:none;display:block;color:inherit;}
+.nl-product-card:hover{background:#111827;}
+.nl-product-card.games{border-top-color:#2dd8ff;}
+.nl-product-card.audio{border-top-color:#ff3ea8;}
+.nl-product-card.software{border-top-color:#a374ff;}
+.nl-product-card.tools{border-top-color:#ffb84d;}
+.nl-product-cat{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;}
+.nl-product-card.games .nl-product-cat{color:#2dd8ff;}
+.nl-product-card.audio .nl-product-cat{color:#ff3ea8;}
+.nl-product-card.software .nl-product-cat{color:#a374ff;}
+.nl-product-card.tools .nl-product-cat{color:#ffb84d;}
+.nl-product-name{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
+.nl-product-desc{font-size:0.82rem;color:rgba(232,234,240,0.5);line-height:1.5;margin-bottom:0.8rem;}
+.nl-product-tag{display:inline-block;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.1);color:rgba(232,234,240,0.35);}
+.nl-product-card.games .nl-product-tag{border-color:rgba(45,216,255,0.2);color:rgba(45,216,255,0.5);}
+.nl-product-card.audio .nl-product-tag{border-color:rgba(255,62,168,0.2);color:rgba(255,62,168,0.5);}
+.nl-product-card.software .nl-product-tag{border-color:rgba(163,116,255,0.2);color:rgba(163,116,255,0.5);}
+.nl-product-card.tools .nl-product-tag{border-color:rgba(255,184,77,0.2);color:rgba(255,184,77,0.5);}
+.nl-product-buy{margin-top:1rem;display:inline-block;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.4rem 1rem;font-family:'Orbitron',monospace;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.nl-product-card.games .nl-product-buy{border:1px solid rgba(45,216,255,0.5);color:#2dd8ff;}
+.nl-product-card.games .nl-product-buy:hover{background:#2dd8ff;color:#080c14;}
+.nl-product-card.audio .nl-product-buy{border:1px solid rgba(255,62,168,0.5);color:#ff3ea8;}
+.nl-product-card.audio .nl-product-buy:hover{background:#ff3ea8;color:#080c14;}
+.nl-product-card.software .nl-product-buy{border:1px solid rgba(163,116,255,0.5);color:#a374ff;}
+.nl-product-card.software .nl-product-buy:hover{background:#a374ff;color:#080c14;}
+.nl-product-card.tools .nl-product-buy{border:1px solid rgba(255,184,77,0.5);color:#ffb84d;}
+.nl-product-card.tools .nl-product-buy:hover{background:#ffb84d;color:#080c14;}
+
+/* === GARANTIA / REEMBOLSO BANNER === */
+.nl-guarantee{background:rgba(163,116,255,0.05);border:1px solid rgba(163,116,255,0.2);border-left:3px solid #a374ff;padding:1.5rem 2rem;margin:2rem 0 0;display:flex;gap:1.2rem;align-items:flex-start;}
+.nl-guarantee-icon{font-size:1.6rem;flex-shrink:0;margin-top:0.1rem;}
+.nl-guarantee-title{font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;color:#a374ff;margin-bottom:0.4rem;letter-spacing:0.1em;}
+.nl-guarantee-text{font-size:0.82rem;color:rgba(232,234,240,0.55);line-height:1.5;}
+
+.nl-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(45,216,255,0.2),rgba(255,62,168,0.2),transparent);margin:0 2.5rem;}
+
+.nl-latam{background:#0a0f1a;padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.nl-latam-text h2{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1rem;line-height:1.3;}
+.nl-latam-text p{color:rgba(232,234,240,0.5);line-height:1.7;font-size:0.92rem;margin-bottom:1.2rem;}
+.nl-latam-flags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.nl-flag{font-size:0.68rem;letter-spacing:0.1em;padding:0.22rem 0.65rem;border:1px solid rgba(163,116,255,0.3);color:rgba(163,116,255,0.7);}
+.nl-manifesto{background:rgba(45,216,255,0.03);border:1px solid rgba(45,216,255,0.1);padding:2rem;font-family:'Orbitron',monospace;font-size:0.82rem;line-height:2;color:rgba(232,234,240,0.6);letter-spacing:0.05em;}
+.nl-manifesto strong{color:#2dd8ff;}
+
+.nl-community{padding:4rem 2.5rem;background:#080c14;}
+.nl-bots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(255,255,255,0.05);margin-top:0.5rem;}
+.nl-bot-card{background:#0d1320;padding:2rem;display:flex;flex-direction:column;gap:1rem;}
+.nl-bot-platform{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;}
+.nl-bot-card.tg .nl-bot-platform{color:#2dd8ff;}
+.nl-bot-card.wa .nl-bot-platform{color:#25d366;}
+.nl-bot-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.nl-bot-card.tg .nl-bot-icon{background:rgba(45,216,255,0.1);border:1px solid rgba(45,216,255,0.2);}
+.nl-bot-card.wa .nl-bot-icon{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);}
+.nl-bot-name{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;}
+.nl-bot-handle{font-size:0.75rem;color:rgba(232,234,240,0.4);margin-top:-0.5rem;}
+.nl-bot-desc{font-size:0.85rem;color:rgba(232,234,240,0.5);line-height:1.5;}
+.nl-bot-features{display:flex;flex-direction:column;gap:0.3rem;}
+.nl-bot-feature{font-size:0.72rem;color:rgba(232,234,240,0.4);padding-left:0.8rem;position:relative;}
+.nl-bot-feature::before{content:'›';position:absolute;left:0;}
+.nl-bot-card.tg .nl-bot-feature::before{color:#2dd8ff;}
+.nl-bot-card.wa .nl-bot-feature::before{color:#25d366;}
+.nl-bot-cta{margin-top:auto;background:transparent;border:1px solid;padding:0.6rem 1.2rem;font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;text-align:center;font-weight:700;}
+.nl-bot-card.tg .nl-bot-cta{border-color:rgba(45,216,255,0.4);color:#2dd8ff;}
+.nl-bot-card.tg .nl-bot-cta:hover{background:#2dd8ff;color:#080c14;}
+.nl-bot-card.wa .nl-bot-cta{border-color:rgba(37,211,102,0.4);color:#25d366;}
+.nl-bot-card.wa .nl-bot-cta:hover{background:#25d366;color:#080c14;}
+
+.nl-footer{padding:2rem 2.5rem;border-top:1px solid rgba(45,216,255,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.nl-footer-logo{font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:900;color:rgba(45,216,255,0.5);letter-spacing:0.15em;}
+.nl-footer-copy{font-size:0.72rem;color:rgba(232,234,240,0.25);letter-spacing:0.05em;}
+.nl-footer-links{display:flex;gap:1.5rem;list-style:none;}
+.nl-footer-links a{font-size:0.72rem;color:rgba(232,234,240,0.35);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;}
+.nl-footer-links a:hover{color:#2dd8ff;}
+
+/* === CHATBOT === */
+.nl-chatbot-bubble{position:fixed;bottom:1.8rem;right:1.8rem;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem;}
+.nl-chat-toggle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2dd8ff,#a374ff);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 24px rgba(45,216,255,0.3);transition:transform 0.2s;}
+.nl-chat-toggle:hover{transform:scale(1.1);}
+.nl-chat-window{width:340px;max-height:480px;background:#0d1320;border:1px solid rgba(45,216,255,0.2);display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,0.6);transition:all 0.25s;overflow:hidden;}
+.nl-chat-window.hidden{display:none;}
+.nl-chat-header{background:rgba(45,216,255,0.06);border-bottom:1px solid rgba(45,216,255,0.12);padding:0.9rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
+.nl-chat-header-title{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;color:#2dd8ff;letter-spacing:0.12em;}
+.nl-chat-header-sub{font-size:0.65rem;color:rgba(232,234,240,0.35);margin-top:0.15rem;}
+.nl-chat-close{background:none;border:none;color:rgba(232,234,240,0.4);cursor:pointer;font-size:1rem;padding:0.2rem;}
+.nl-chat-close:hover{color:#ff3ea8;}
+.nl-chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.7rem;}
+.nl-chat-messages::-webkit-scrollbar{width:3px;}
+.nl-chat-messages::-webkit-scrollbar-track{background:transparent;}
+.nl-chat-messages::-webkit-scrollbar-thumb{background:rgba(45,216,255,0.2);}
+.nl-msg{max-width:88%;font-size:0.8rem;line-height:1.5;padding:0.6rem 0.9rem;}
+.nl-msg.bot{background:rgba(45,216,255,0.07);border:1px solid rgba(45,216,255,0.12);color:rgba(232,234,240,0.8);align-self:flex-start;border-radius:0 8px 8px 8px;}
+.nl-msg.user{background:rgba(163,116,255,0.15);border:1px solid rgba(163,116,255,0.2);color:rgba(232,234,240,0.9);align-self:flex-end;border-radius:8px 0 8px 8px;}
+.nl-chat-faq{padding:0.6rem 1rem;border-top:1px solid rgba(45,216,255,0.08);display:flex;flex-direction:column;gap:0.4rem;max-height:160px;overflow-y:auto;}
+.nl-faq-btn{background:rgba(45,216,255,0.04);border:1px solid rgba(45,216,255,0.15);color:rgba(232,234,240,0.6);font-size:0.72rem;padding:0.45rem 0.7rem;text-align:left;cursor:pointer;transition:all 0.15s;font-family:'Rajdhani',sans-serif;}
+.nl-faq-btn:hover{background:rgba(45,216,255,0.1);color:#2dd8ff;border-color:rgba(45,216,255,0.3);}
+.nl-chat-input-row{display:flex;border-top:1px solid rgba(45,216,255,0.1);}
+.nl-chat-input{flex:1;background:transparent;border:none;padding:0.75rem 1rem;font-family:'Rajdhani',sans-serif;font-size:0.82rem;color:#e8eaf0;outline:none;resize:none;}
+.nl-chat-input::placeholder{color:rgba(232,234,240,0.25);}
+.nl-chat-send{background:none;border:none;border-left:1px solid rgba(45,216,255,0.1);padding:0 1rem;cursor:pointer;color:#2dd8ff;font-size:1rem;transition:color 0.2s;}
+.nl-chat-send:hover{color:#fff;}
+
+@media(max-width:640px){
+  .nl-latam{grid-template-columns:1fr;gap:2rem;}
+  .nl-nav-links{display:none;}
+  .nl-hero{height:auto;padding:4rem 1.5rem 3rem;}
+  .nl-section,.nl-latam,.nl-community{padding:3rem 1.5rem;}
+  .nl-chat-window{width:calc(100vw - 2rem);right:1rem;}
+}
+</style>
+
+<div class="nl-root">
+
+<nav class="nl-nav">
+  <div class="nl-logo">NAGUAL<span>·</span>TECH</div>
+  <ul class="nl-nav-links">
+    <li><a href="#">Games</a></li>
+    <li><a href="#">Software</a></li>
+    <li><a href="#">Audio</a></li>
+    <li><a href="#">Comunidad</a></li>
+  </ul>
+  <button class="nl-nav-cta" onclick="window.open('https://nautlab.itch.io','_blank')">Ver catálogo</button>
+</nav>
+
+<section class="nl-hero">
+  <div class="nl-parallax-bg" id="parallaxBg"></div>
+  <div class="nl-stars" id="starsLayer"></div>
+  <div class="nl-hero-content">
+    <p class="nl-eyebrow">Guadalajara · México · Est. 2024</p>
+    <h1>Software que<br><em>realmente</em> <span class="pk">funciona.</span></h1>
+    <p class="nl-hero-sub">Juegos, herramientas de audio y software de negocios — hecho desde cero, sin plantillas, sin nube, sin suscripciones.</p>
+    <div class="nl-hero-badges">
+      <span class="nl-badge">100% Local-First</span>
+      <span class="nl-badge">Sin Suscripciones</span>
+      <span class="nl-badge">Browser Ready</span>
+      <span class="nl-badge">Hecho en LATAM</span>
+    </div>
+    <div class="nl-hero-ctas">
+      <a href="https://nautlab.itch.io" target="_blank" class="btn-primary">Explorar en itch.io</a>
+      <button class="btn-ghost" onclick="window.open('https://t.me/nautiluslabialocalbot','_blank')">Bot Telegram ↗</button>
+    </div>
+  </div>
+</section>
+
+<div class="nl-stats">
+  <div class="nl-stat"><span class="nl-stat-num">12+</span><span class="nl-stat-label">Productos activos</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">3</span><span class="nl-stat-label">Juegos en CrazyGames</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">0</span><span class="nl-stat-label">Servidores externos</span></div>
+  <div class="nl-stat"><span class="nl-stat-num">∞</span><span class="nl-stat-label">Offline siempre</span></div>
+</div>
+
+<section class="nl-section">
+  <span class="nl-section-label">Catálogo</span>
+  <h2 class="nl-section-title">Todo el arsenal</h2>
+  <div class="nl-products-grid">
+
+    <a href="https://ferplex.github.io/neon-v/" target="_blank" class="nl-product-card games">
+      <div class="nl-product-cat">Arcade · Browser Game · Gratis</div>
+      <div class="nl-product-name">NEON VF</div>
+      <div class="nl-product-desc">Arcade multi-juego — Arkanoid, Snake, Tetris, Space Hunter con créditos sincronizados.</div>
+      <span class="nl-product-tag">CrazyGames · GitHub Pages</span>
+    </a>
+
+    <a href="https://nautlab.itch.io/neon-r" target="_blank" class="nl-product-card games">
+      <div class="nl-product-cat">Shooter · Browser Game</div>
+      <div class="nl-product-name">NEON R</div>
+      <div class="nl-product-desc">Shooter vertical neón con controles táctiles. Soundtrack thrash metal 200bpm propio.</div>
+      <span class="nl-product-tag">CrazyGames (en revisión)</span>
+      <span class="nl-product-buy">Ver en itch.io ↗</span>
+    </a>
+
+    <a href="https://nautlab.itch.io/g-space" target="_blank" class="nl-product-card games">
+      <div class="nl-product-cat">Space Shooter · Browser</div>
+      <div class="nl-product-name">G SPACE</div>
+      <div class="nl-product-desc">Shooter espacial con arte propio, misiles, audio por nivel y SDK CrazyGames v3.</div>
+      <span class="nl-product-tag">CrazyGames (en revisión)</span>
+      <span class="nl-product-buy">Ver en itch.io ↗</span>
+    </a>
+
+    <a href="https://nautlab.itch.io/nautilus-synth-pro" target="_blank" class="nl-product-card audio">
+      <div class="nl-product-cat">Síntesis · Browser Tool · Gratis</div>
+      <div class="nl-product-name">SYNTH PRO</div>
+      <div class="nl-product-desc">Sintetizador FM — 3 canales, arpeggiador, delay, glitch, grabación WAV, espectro visual.</div>
+      <span class="nl-product-tag">Browser · Offline · Free</span>
+    </a>
+
+    <a href="https://nautlab.itch.io/narrator-pro" target="_blank" class="nl-product-card audio">
+      <div class="nl-product-cat">TTS · Narración · $1–2 USD</div>
+      <div class="nl-product-name">NARRATOR PRO</div>
+      <div class="nl-product-desc">Narración en browser con voces por personaje y efectos. Sin servidor, sin API key.</div>
+      <span class="nl-product-tag">Browser · Local</span>
+      <span class="nl-product-buy">Comprar ↗</span>
+    </a>
+
+    <a href="https://nautlab.itch.io/vj-engine" target="_blank" class="nl-product-card audio">
+      <div class="nl-product-cat">DJ Visuals · VJ · Gratis</div>
+      <div class="nl-product-name">VJ ENGINE</div>
+      <div class="nl-product-desc">Motor de visuales audio-reactivos para eventos en vivo y YouTube. Vanilla JS.</div>
+      <span class="nl-product-tag">Live Events · Browser · Free</span>
+    </a>
+
+    <a href="https://ferplexnauti.blogspot.com/2026/09/descarga-talleros-ia-local.html" target="_blank" class="nl-product-card software">
+      <div class="nl-product-cat">Business OS · Windows · Gratis</div>
+      <div class="nl-product-name">TALLER·OS</div>
+      <div class="nl-product-desc">Panel de operaciones para talleres — IA local con voz, inventario, ventas. 100% offline.</div>
+      <span class="nl-product-tag">Electron · Ollama · itch.io</span>
+      <span class="nl-product-buy">Descargar gratis ↗</span>
+    </a>
+
+
+    <a href="https://nautlab.itch.io/mangaai-pro" target="_blank" class="nl-product-card tools">
+      <div class="nl-product-cat">Imagen · AI Tool · Gratis</div>
+      <div class="nl-product-name">MANGAAI PRO</div>
+      <div class="nl-product-desc">2 clics y sale la imagen — manga multi-resolución, presets de personajes, filtros automáticos. Sin prompt obligatorio.</div>
+      <span class="nl-product-tag">Powered by Pollinations.ai</span>
+      <span style="display:block;font-size:0.68rem;color:rgba(255,184,77,0.5);margin-top:0.5rem;">Gratis · Donación voluntaria</span>
+    </a>
+
+  </div>
+
+  <!-- GARANTÍA / POLÍTICA DE REEMBOLSO -->
+  <div class="nl-guarantee">
+    <div class="nl-guarantee-icon">🛡️</div>
+    <div>
+      <div class="nl-guarantee-title">Política de Software — Sin riesgo</div>
+      <div class="nl-guarantee-text">
+        Los juegos son gratis o de pago directo sin intermediario (itch.io/Gumroad cobran su comisión — lo que tú ves es lo que nos llega a nosotros, sin que nosotros la absorbamos).<br><br>
+        <strong style="color:#a374ff;">Software de escritorio (TALLER·OS):</strong> si el programa no corre en tu equipo y no podemos resolverlo por soporte, te ofrecemos producto alternativo de igual valor. Soporte directo por WhatsApp o Telegram antes de cualquier compra.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="nl-divider"></div>
+
+<section class="nl-community">
+  <span class="nl-section-label">Comunidad</span>
+  <h2 class="nl-section-title">Conecta con NagualTech</h2>
+  <div class="nl-bots-grid">
+
+    <div class="nl-bot-card tg">
+      <div class="nl-bot-platform">Telegram · Bot IA</div>
+      <div class="nl-bot-icon">✦</div>
+      <div class="nl-bot-name">NAUTIA LOCAL BOT</div>
+      <div class="nl-bot-handle">@nautiluslabialocalbot</div>
+      <div class="nl-bot-desc">Instalamos inteligencia artificial directo en tu equipo: sin nube. Noticias, rewards y más.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Noticias GTA6 desde la página oficial, cada día</div>
+        <div class="nl-bot-feature">Sistema de rewards y puntos</div>
+        <div class="nl-bot-feature">Wallpapers e imágenes AI</div>
+        <div class="nl-bot-feature">IA local sin internet</div>
+      </div>
+      <a href="https://t.me/nautiluslabialocalbot" target="_blank" class="nl-bot-cta">Abrir en Telegram ↗</a>
+    </div>
+
+    <div class="nl-bot-card wa">
+      <div class="nl-bot-platform">WhatsApp · Soporte</div>
+      <div class="nl-bot-icon">◈</div>
+      <div class="nl-bot-name">SOPORTE NAGUALTECH</div>
+      <div class="nl-bot-handle">+52 331 256 3514</div>
+      <div class="nl-bot-desc">Atención directa para ventas y soporte técnico de todos los productos NagualTech.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Ventas y licencias</div>
+        <div class="nl-bot-feature">Soporte técnico directo</div>
+        <div class="nl-bot-feature">Instalación de IA local (TALLER·OS, Bitácora)</div>
+        <div class="nl-bot-feature">Atención en español</div>
+      </div>
+      <a href="https://wa.me/523312563514" target="_blank" class="nl-bot-cta">Escribir por WhatsApp ↗</a>
+    </div>
+
+    <div class="nl-bot-card tg">
+      <div class="nl-bot-platform">Telegram · Canal</div>
+      <div class="nl-bot-icon">◉</div>
+      <div class="nl-bot-name">NAUTILUS UPDATES</div>
+      <div class="nl-bot-handle">@nautiluslabarch</div>
+      <div class="nl-bot-desc">Lanzamientos, actualizaciones y contenido de NagualTech directo a tu Telegram.</div>
+      <div class="nl-bot-features">
+        <div class="nl-bot-feature">Nuevos lanzamientos</div>
+        <div class="nl-bot-feature">Assets y wallpapers gratis</div>
+        <div class="nl-bot-feature">Behind the scenes del studio</div>
+      </div>
+      <a href="https://t.me/nautiluslabarch" target="_blank" class="nl-bot-cta">Seguir canal ↗</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="nl-divider"></div>
+
+<section class="nl-latam" style="padding:4rem 2.5rem;">
+  <div class="nl-latam-text">
+    <span class="nl-section-label">Hecho en México</span>
+    <h2>Software de LATAM<br>para el mundo.</h2>
+    <p>Todo nace desde Guadalajara — sin VC, sin oficina, sin pretextos. Infraestructura local, cero dependencias externas.</p>
+    <p>TALLER·OS lo usa un mecánico en Tlaquepaque. NEON VF se juega en Brasil. El Synth Pro suena en estudios de Colombia.</p>
+    <div class="nl-latam-flags">
+      <span class="nl-flag">🇲🇽 México</span>
+      <span class="nl-flag">🇧🇷 Brasil</span>
+      <span class="nl-flag">🇨🇴 Colombia</span>
+      <span class="nl-flag">🇦🇷 Argentina</span>
+      <span class="nl-flag">+ Todo LATAM</span>
+    </div>
+  </div>
+  <div class="nl-manifesto">
+    <strong>// FILOSOFÍA</strong><br><br>
+    Sin plantillas.<br>
+    Sin suscripciones.<br>
+    Sin servidor tuyo en la nube de alguien más.<br><br>
+    <strong>Tu software.</strong><br>
+    <strong>Tu máquina.</strong><br>
+    <strong>Tus datos.</strong><br><br>
+    — NagualTech, Jalisco MX
+  </div>
+</section>
+
+
+<div class="nl-divider"></div>
+
+<section class="nl-section" style="padding:4rem 2.5rem;text-align:center;">
+  <span class="nl-section-label">IA Local · Ollama</span>
+  <h2 class="nl-section-title" style="text-align:center;">Descarga nuestra IA</h2>
+  <p style="color:rgba(232,234,240,0.5);max-width:500px;margin:0 auto 2rem;line-height:1.6;font-size:0.9rem;">
+    Modelo propio entrenado en NagualTech. Corre 100% en tu máquina — sin nube, sin cuenta, sin límites.
+  </p>
+
+  <div style="background:#0d1320;border:1px solid rgba(45,216,255,0.15);border-left:3px solid #2dd8ff;padding:1.5rem 2rem;max-width:500px;margin:0 auto 1.5rem;text-align:left;">
+    <div style="font-size:0.65rem;letter-spacing:0.2em;color:#2dd8ff;margin-bottom:0.75rem;">PASO 1 — Instala Ollama</div>
+    <a href="https://ollama.com" target="_blank" style="color:#fff;font-family:'Orbitron',monospace;font-size:0.8rem;text-decoration:none;border-bottom:1px solid rgba(45,216,255,0.3);">→ ollama.com ↗</a>
+  </div>
+
+  <div style="background:#0d1320;border:1px solid rgba(45,216,255,0.15);border-left:3px solid #ff3ea8;padding:1.5rem 2rem;max-width:500px;margin:0 auto 1.5rem;text-align:left;">
+    <div style="font-size:0.65rem;letter-spacing:0.2em;color:#ff3ea8;margin-bottom:0.75rem;">PASO 2 — Descarga NAUTIA</div>
+    <code style="font-family:monospace;font-size:0.95rem;color:#fff;background:#080c14;padding:0.6rem 1rem;display:block;border-radius:2px;letter-spacing:0.05em;">ollama pull lsanti64/naultia</code>
+    <button onclick="navigator.clipboard.writeText('ollama pull lsanti64/naultia')" style="margin-top:0.75rem;background:transparent;border:1px solid rgba(255,62,168,0.3);color:rgba(255,62,168,0.7);padding:0.35rem 1rem;font-size:0.65rem;letter-spacing:0.15em;cursor:pointer;font-family:'Orbitron',monospace;">COPIAR COMANDO</button>
+  </div>
+
+  <div style="background:#0d1320;border:1px solid rgba(163,116,255,0.15);border-left:3px solid #a374ff;padding:1.5rem 2rem;max-width:500px;margin:0 auto 2rem;text-align:left;">
+    <div style="font-size:0.65rem;letter-spacing:0.2em;color:#a374ff;margin-bottom:0.75rem;">PASO 3 — Corre el modelo</div>
+    <code style="font-family:monospace;font-size:0.95rem;color:#fff;background:#080c14;padding:0.6rem 1rem;display:block;border-radius:2px;letter-spacing:0.05em;">ollama run lsanti64/naultia</code>
+    <button onclick="navigator.clipboard.writeText('ollama run lsanti64/naultia')" style="margin-top:0.75rem;background:transparent;border:1px solid rgba(163,116,255,0.3);color:rgba(163,116,255,0.7);padding:0.35rem 1rem;font-size:0.65rem;letter-spacing:0.15em;cursor:pointer;font-family:'Orbitron',monospace;">COPIAR COMANDO</button>
+  </div>
+
+  <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <span class="nl-badge">100% Offline</span>
+    <span class="nl-badge">Sin cuenta</span>
+    <span class="nl-badge">Sin límites</span>
+    <span class="nl-badge">Bajo consumo</span>
+    <span class="nl-badge">Windows · Mac · Linux</span>
+  </div>
+
+  <a href="https://ollama.com/lsanti64/naultia" target="_blank" class="btn-primary">Ver modelo en Ollama ↗</a>
+</section>
+
+<!-- ===== UNIVERSO NAGUAL ===== -->
+<div class="nl-divider"></div>
+<section class="nl-section" style="padding:4rem 2.5rem;background:#080c14;">
+  <span class="nl-section-label">Proyecto · En Desarrollo</span>
+  <h2 class="nl-section-title">EL UNIVERSO NAGUAL</h2>
+  <p style="color:rgba(232,234,240,0.55);max-width:600px;line-height:1.7;font-size:0.92rem;margin-bottom:2.5rem;">
+    Un universo cyberpunk-neon con identidad propia — nacido en Jalisco, México. No es un juego más del montón: es una IP construida desde cero con lore, personajes, manga, y un mundo interconectado donde cada historia importa.
+  </p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(255,255,255,0.05);margin-bottom:2.5rem;">
+    <div style="background:#0d1320;padding:1.8rem;border-top:2px solid #2dd8ff;">
+      <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#2dd8ff;margin-bottom:0.5rem;">Fase 1</div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">SHOOTER 3D</div>
+      <div style="font-size:0.8rem;color:rgba(232,234,240,0.45);line-height:1.5;">Acción en tercera persona. Balazos, puzzles, historia. Motor propio desde Jalisco.</div>
+    </div>
+    <div style="background:#0d1320;padding:1.8rem;border-top:2px solid #ff3ea8;">
+      <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#ff3ea8;margin-bottom:0.5rem;">Fase 2</div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">MANGA + LORE</div>
+      <div style="font-size:0.8rem;color:rgba(232,234,240,0.45);line-height:1.5;">Historia expandida en manga — personajes con pasado, mundo con reglas propias.</div>
+    </div>
+    <div style="background:#0d1320;padding:1.8rem;border-top:2px solid #a374ff;">
+      <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#a374ff;margin-bottom:0.5rem;">Fase 3</div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">UNIVERSO IP</div>
+      <div style="font-size:0.8rem;color:rgba(232,234,240,0.45);line-height:1.5;">Un mundo interconectado. Cada juego, manga y bot que hacemos alimenta el mismo universo.</div>
+    </div>
+  </div>
+  <div style="background:rgba(45,216,255,0.03);border:1px solid rgba(45,216,255,0.15);border-left:3px solid #2dd8ff;padding:1.5rem 2rem;max-width:600px;">
+    <div style="font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;color:#2dd8ff;margin-bottom:0.5rem;letter-spacing:0.1em;">¿Eres desarrollador, artista o inversor?</div>
+    <div style="font-size:0.85rem;color:rgba(232,234,240,0.55);line-height:1.6;margin-bottom:1rem;">Buscamos colaboradores para expandir el universo. Tenemos el mundo, el arte, el código y la visión. Escríbenos directo.</div>
+    <a href="https://wa.me/523312563514" target="_blank" class="btn-primary">Escribir al equipo ↗</a>
+  </div>
+</section>
+
+<!-- ===== DONACIÓN CRYPTO ===== -->
+<div class="nl-divider"></div>
+<section class="nl-section" style="padding:4rem 2.5rem;text-align:center;background:#0a0f1a;">
+  <span class="nl-section-label">Apoya el proyecto</span>
+  <h2 class="nl-section-title" style="text-align:center;">Donación Directa · Crypto</h2>
+  <p style="color:rgba(232,234,240,0.45);max-width:480px;margin:0 auto 2rem;font-size:0.88rem;line-height:1.6;">
+    Sin intermediarios. Sin PayPal. Sin comisión de plataforma.<br>
+    100% directo al estudio — cada peso va al universo.
+  </p>
+  <div style="display:inline-block;background:#0d1320;border:1px solid rgba(45,216,255,0.2);padding:2rem;max-width:340px;width:100%;">
+    <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#2dd8ff;margin-bottom:1rem;">USDT · Red TRX (Tron)</div>
+    <!-- QR generado con qrserver.com desde la wallet address -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TY6qa2JxGAwguttpcF63CorQWPqJF6RL8q&color=2DD8FF&bgcolor=0D1320&margin=10" 
+         alt="QR Donación USDT TRX" 
+         style="width:200px;height:200px;display:block;margin:0 auto 1.2rem;border:1px solid rgba(45,216,255,0.15);"
+         onerror="this.style.display='none';document.getElementById('qr-fallback').style.display='block'">
+    <div id="qr-fallback" style="display:none;width:200px;height:200px;margin:0 auto 1.2rem;background:#111827;border:1px solid rgba(45,216,255,0.2);display:none;align-items:center;justify-content:center;font-size:0.7rem;color:rgba(45,216,255,0.4);text-align:center;padding:1rem;">Escanea la dirección de abajo</div>
+    <div style="font-size:0.62rem;letter-spacing:0.1em;color:rgba(232,234,240,0.35);margin-bottom:0.5rem;">DIRECCIÓN WALLET</div>
+    <div style="font-family:monospace;font-size:0.72rem;color:#2dd8ff;word-break:break-all;background:#080c14;padding:0.6rem 0.8rem;border-radius:2px;margin-bottom:0.8rem;line-height:1.6;">TY6qa2JxGAwguttpcF63CorQWPqJF6RL8q</div>
+    <button onclick="navigator.clipboard.writeText('TY6qa2JxGAwguttpcF63CorQWPqJF6RL8q').then(()=>{this.textContent='✓ COPIADO';setTimeout(()=>this.textContent='COPIAR DIRECCIÓN',2000)})" 
+            style="width:100%;background:transparent;border:1px solid rgba(45,216,255,0.4);color:#2dd8ff;padding:0.55rem;font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(45,216,255,0.1)'" 
+            onmouseout="this.style.background='transparent'">COPIAR DIRECCIÓN</button>
+  </div>
+  <p style="margin-top:1.2rem;font-size:0.72rem;color:rgba(232,234,240,0.25);letter-spacing:0.05em;">Solo USDT en red TRX · No envíes otras monedas a esta dirección</p>
+</section>
+
+<footer class="nl-footer">
+  <div class="nl-footer-logo">NAGUAL·TECH</div>
+  <ul class="nl-footer-links">
+    <li><a href="https://nautlab.itch.io" target="_blank">itch.io</a></li>
+    <li><a href="https://nautilulab.gumroad.com" target="_blank">Gumroad</a></li>
+    <li><a href="https://ferplex.github.io/neon-v/" target="_blank">NEON VF</a></li>
+    <li><a href="https://t.me/nautiluslabialocalbot" target="_blank">Telegram</a></li>
+  </ul>
+  <span class="nl-footer-copy">© 2024–2026 NagualTech · Guadalajara, MX</span>
+</footer>
+
+</div>
+
+<!-- ===== CHATBOT FLOTANTE ===== -->
+<div class="nl-chatbot-bubble" id="chatBubble">
+  <div class="nl-chat-window hidden" id="chatWindow">
+    <div class="nl-chat-header">
+      <div>
+        <div class="nl-chat-header-title">NAGUALTECH ASISTENTE</div>
+        <div class="nl-chat-header-sub">Soporte técnico · Sin código requerido</div>
+      </div>
+      <button class="nl-chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="nl-chat-messages" id="chatMessages">
+      <div class="nl-msg bot">¡Hola! Soy el asistente de NagualTech. ¿En qué te ayudo? Selecciona una pregunta o escribe la tuya.</div>
+    </div>
+    <div class="nl-chat-faq" id="faqButtons"></div>
+    <div class="nl-chat-input-row">
+      <input class="nl-chat-input" id="chatInput" placeholder="Escribe tu pregunta..." onkeydown="handleKey(event)">
+      <button class="nl-chat-send" onclick="sendUserMsg()">➤</button>
+    </div>
+  </div>
+  <button class="nl-chat-toggle" onclick="toggleChat()" title="Soporte NagualTech">💬</button>
+</div>
+
+<script>
+// ---- Parallax & estrellas ----
+const stars = document.getElementById('starsLayer');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='nl-star';
+  const sz=Math.random()*2+0.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:${Math.random()*0.6+0.1};`;
+  stars.appendChild(s);
+}
+const hero=document.querySelector('.nl-hero');
+const bg=document.getElementById('parallaxBg');
+const sl=document.getElementById('starsLayer');
+hero.addEventListener('mousemove',e=>{
+  const r=hero.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-0.5;
+  const y=(e.clientY-r.top)/r.height-0.5;
+  bg.style.transform=`translate(${x*20}px,${y*12}px)`;
+  sl.style.transform=`translate(${x*35}px,${y*20}px)`;
+});
+hero.addEventListener('mouseleave',()=>{
+  bg.style.transform='';sl.style.transform='';
+  bg.style.transition='transform 0.8s ease';sl.style.transition='transform 0.8s ease';
+  setTimeout(()=>{bg.style.transition='';sl.style.transition='';},800);
+});
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  bg.style.transform=`translateY(${y*0.3}px)`;
+  sl.style.transform=`translateY(${y*0.5}px)`;
+});
+
+// ---- Chatbot ----
+const FAQ = [
+  {
+    q:"¿Necesito saber programar para usar el software?",
+    a:"No. Todo el software de NagualTech está diseñado para usuarios finales. TALLER·OS y Bitácora tienen instalador .exe — doble clic y listo. Los juegos y herramientas browser corren directo desde el navegador, sin instalar nada extra."
+  },
+  {
+    q:"¿Funciona sin internet?",
+    a:"Sí. Todo el stack es local-first. TALLER·OS, Bitácora y las herramientas browser funcionan 100% offline una vez descargados. La IA local usa Ollama — corre en tu máquina, tus datos nunca salen."
+  },
+  {
+    q:"¿Qué necesito para instalar TALLER·OS o Bitácora?",
+    a:"Windows 10/11, al menos 8GB de RAM (16 recomendado para IA), y descargar Ollama gratis desde ollama.com. El instalador de NagualTech lo guía paso a paso. Soporte directo por WhatsApp si algo falla."
+  },
+  {
+    q:"¿Cómo compro un producto?",
+    a:"Desde el catálogo de arriba haz clic en 'Comprar' o 'Obtener' — te lleva directo a itch.io o Gumroad. Pago con tarjeta, PayPal o métodos locales según la plataforma. No necesitas cuenta para comprar en itch.io."
+  },
+  {
+    q:"¿Qué pasa si el software no funciona en mi equipo?",
+    a:"Primero escríbenos por WhatsApp (+52 331 256 3514) — la mayoría de problemas se resuelven en minutos. Si después de soporte técnico genuinamente no funciona, te ofrecemos un producto alternativo de igual valor. No absorbemos comisiones de plataforma, pero nunca te dejamos sin solución."
+  },
+  {
+    q:"¿El Synth Pro o VJ Engine necesitan drivers especiales?",
+    a:"No. Son herramientas browser — abres el archivo .html en Chrome o Firefox y funcionan. El Synth Pro usa Web Audio API nativa del navegador. Sin plugins, sin ASIO, sin configuración de audio extra."
+  },
+  {
+    q:"¿Los juegos tienen microtransacciones?",
+    a:"Ninguno. NEON VF es gratis y sin anuncios. Los otros juegos son de pago único o también gratis. Sin loot boxes, sin pase de temporada, sin nada de eso."
+  },
+  {
+    q:"¿Dónde veo todos los productos con imágenes?",
+    a:"En nautlab.itch.io — cada producto tiene capturas, descripción y precio. También puedes verlos en nautilulab.gumroad.com. Las tarjetas de arriba te llevan directo a cada página."
+  },
+  {
+    q:"¿Tienen soporte en español?",
+    a:"Sí, todo el soporte es en español. WhatsApp +52 331 256 3514 o Telegram @nautiluslabialocalbot. Somos del equipo, no un bot de soporte externo."
+  },
+  {
+    q:"¿Qué es la IA local? ¿Es diferente a ChatGPT?",
+    a:"Sí, muy diferente. ChatGPT manda tus datos a servidores de OpenAI en la nube. La IA local (Ollama) corre modelos de lenguaje directamente en tu PC — sin internet, sin suscripción mensual, sin que nadie vea tus datos. TALLER·OS y Bitácora la integran de fábrica."
+  }
+];
+
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const faqButtons = document.getElementById('faqButtons');
+const chatInput = document.getElementById('chatInput');
+
+// Render FAQ buttons
+FAQ.forEach((item, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nl-faq-btn';
+  btn.textContent = item.q;
+  btn.onclick = () => showAnswer(item.q, item.a);
+  faqButtons.appendChild(btn);
+});
+
+function toggleChat(){
+  chatWindow.classList.toggle('hidden');
+  if(!chatWindow.classList.contains('hidden')){
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
+
+function addMsg(text, type){
+  const m = document.createElement('div');
+  m.className = `nl-msg ${type}`;
+  m.textContent = text;
+  chatMessages.appendChild(m);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showAnswer(question, answer){
+  addMsg(question, 'user');
+  setTimeout(() => addMsg(answer, 'bot'), 300);
+}
+
+function handleKey(e){
+  if(e.key === 'Enter') sendUserMsg();
+}
+
+function sendUserMsg(){
+  const val = chatInput.value.trim();
+  if(!val) return;
+  addMsg(val, 'user');
+  chatInput.value = '';
+
+  // Busca match en FAQ
+  const lower = val.toLowerCase();
+  const match = FAQ.find(f =>
+    f.q.toLowerCase().split(' ').some(w => w.length > 4 && lower.includes(w))
+  );
+
+  setTimeout(() => {
+    if(match){
+      addMsg(match.a, 'bot');
+    } else {
+      addMsg('No encontré respuesta exacta para eso. Escríbenos directo por WhatsApp (+52 331 256 3514) o Telegram @nautiluslabialocalbot — respondemos rápido.', 'bot');
+    }
+  }, 350);
+}
+</script>
